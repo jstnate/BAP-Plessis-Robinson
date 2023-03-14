@@ -28,38 +28,38 @@
     </form>
     <form method="POST">
         <select>
-            <option value="sweat">Sweat</option>
-            <option value="t-shirt">T-shirt</option>
-            <option value="pantalon">Pantalon</option>
-            <option value="t-shirt">Short</option>
+            <option value="1">Sweat</option>
+            <option value="2">T-shirt</option>
+            <option value="3">Pantalon</option>
+            <option value="4">Short</option>
         </select>
         <label for="brand">Marque</label>
             <input type="text" name="marque" id="marque" placeholder="Marque">
 
         <select>
-            <option value="bleu">Bleu</option>
-            <option value="rouge">Rouge</option>
-            <option value="vert">Vert</option>
-            <option value="jaune">Jaune</option>
+            <option value="1">Bleu</option>
+            <option value="2">Rouge</option>
+            <option value="3">Vert</option>
+            <option value="4">Jaune</option>
         </select>
         <select>
-            <option value="laine">Laine</option>
-            <option value="suédin">Suédin</option>
-            <option value="coton">Coton</option>
-            <option value="jean">Jean</option>
+            <option value="1">Laine</option>
+            <option value="2">Suédin</option>
+            <option value="3">Coton</option>
+            <option value="">Jean</option>
         </select>
         <select>
-            <option value="parfait état">Parfait état</option>
-            <option value="très bon état">Très bon état</option>
-            <option value="bon état">Bon état</option>
-            <option value="état correcte">Etat correcte</option>
+            <option value="1">Parfait état</option>
+            <option value="2">Très bon état</option>
+            <option value="3">Bon état</option>
+            <option value="4">Etat correcte</option>
         </select>
         <select>
-            <option value="xs">XS</option>
-            <option value="s">S</option>
-            <option value="m">M</option>
-            <option value="l">L</option>
-            <option value="xl">XL</option>
+            <option value="1">XS</option>
+            <option value="2">S</option>
+            <option value="3">M</option>
+            <option value="4">L</option>
+            <option value="5">XL</option>
         </select>
 
         <button type="submit">Effectuer mon don !</button>
