@@ -1,9 +1,22 @@
+<?php
+    require_once 'class/connection.php';
+
+    $connection = new Connection();
+    $categories = $connection->getCategories();
+    $colors = $connection->getColors();
+    $matters = $connection->getMatters();
+    $states = $connection->getStates();
+    $sizes = $connection->getSizes();
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="public/js/forms.js" defer></script>
     <link rel="stylesheet" href="public/css/style.css">
     <title>Participer aux dons</title>
 </head>
@@ -27,42 +40,52 @@
         <button type="submit">Passer à l'étape suivante</button>
     </form>
     <form method="POST">
-        <select>
-            <option value="1">Sweat</option>
-            <option value="2">T-shirt</option>
-            <option value="3">Pantalon</option>
-            <option value="4">Short</option>
+        <select name="category">
+            <?php
+                foreach ($categories as $category) : ?>
+                    <option value="<?= $category['id'] ?>"><?= $category['title'] ?></option>
+                <?php endforeach;
+            ?>
         </select>
         <label for="brand">Marque</label>
-            <input type="text" name="marque" id="marque" placeholder="Marque">
+            <input type="text" name="brand" id="marque" placeholder="Marque">
 
-        <select>
-            <option value="1">Bleu</option>
-            <option value="2">Rouge</option>
-            <option value="3">Vert</option>
-            <option value="4">Jaune</option>
+        <select name="color">
+            <?php
+                foreach ($colors as $color) : ?>
+                    <option value="<?= $color['id'] ?>"><?= $color['title'] ?></option>
+                <?php endforeach;
+            ?>
         </select>
-        <select>
-            <option value="1">Laine</option>
-            <option value="2">Suédin</option>
-            <option value="3">Coton</option>
-            <option value="">Jean</option>
+        <select name="matter">
+            <?php
+                foreach ($matters as $matter) : ?>
+                    <option value="<?= $matter['id'] ?>"><?= $matter['title'] ?></option>
+                <?php endforeach;
+            ?>
         </select>
-        <select>
-            <option value="1">Parfait état</option>
-            <option value="2">Très bon état</option>
-            <option value="3">Bon état</option>
-            <option value="4">Etat correcte</option>
+        <select name="state">
+            <?php
+                foreach ($states as $state) : ?>
+                    <option value="<?= $state['id'] ?>"><?= $state['title'] ?></option>
+                <?php endforeach;
+            ?>
         </select>
-        <select>
-            <option value="1">XS</option>
-            <option value="2">S</option>
-            <option value="3">M</option>
-            <option value="4">L</option>
-            <option value="5">XL</option>
+        <select name="size">
+            <?php
+                foreach ($sizes as $size) : ?>
+                    <option value="<?= $size['id'] ?>"><?= $size['title'] ?></option>
+                <?php endforeach;
+            ?>
         </select>
 
         <button type="submit">Effectuer mon don !</button>
+    </form>
+
+    <form method="POST" id="test-form">
+        <input type="text" name="test-name">
+        <input type="text" name="test-email">
+        <button type="submit">Submit</button>
     </form>
 </body>
 </html>
