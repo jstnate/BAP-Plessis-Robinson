@@ -1,12 +1,40 @@
 <?php
     require_once 'class/connection.php';
+    require_once 'class/product.php';
 
     $connection = new Connection();
+
+//    ==================== GET =================
     $categories = $connection->getCategories();
     $colors = $connection->getColors();
     $matters = $connection->getMatters();
     $states = $connection->getStates();
     $sizes = $connection->getSizes();
+//    ==================== END GET =================
+
+// ==================== INSERT =================
+    if ($_POST) :
+
+        $product = new Product(
+            $_POST['lastname'],
+            $_POST['firstname'],
+            $_POST['email'],
+            $_POST['phone'],
+            $_POST['title'],
+            $_POST['description'],
+            $_POST['category'],
+            $_POST['brand'],
+            $_POST['color'],
+            $_POST['matter'],
+            $_POST['state'],
+            $_POST['size']
+        );
+        var_dump($product);
+        $insert = $connection->insertProduct($product);
+
+        echo $insert == true  ? 'Ajouté' :  'Erreur';
+    endif;
+// ==================== END INSERT =================
 ?>
 
 <!DOCTYPE html>
@@ -28,7 +56,7 @@
             <label for="firstname">Prénom</label>
                 <input type="text" name="firstname" id="firstname" placeholder="Prénom">
             <label for="email">Email</label>
-                <input type="email" name="email" id="email" placeholder="Email">
+                <input type="email" name="email" id="email" placeholder="Email" required>
             <label for="phone">Téléphone</label>
                 <input type="tel" name="phone" id="phone" placeholder="Téléphone">
 
@@ -37,15 +65,15 @@
 
         <div id="step-2" class="product-infos" style="display: none">
             <label for="title">Titre du produit</label>
-                <input type="text" name="title" id="title" placeholder="Titre du produit">
+                <input type="text" name="title" id="title" placeholder="Titre du produit"  required>
             <label for="description">Description du produit</label>
-                <textarea name="description" id="description" cols="30"></textarea>
+                <textarea name="description" id="description" cols="30" required></textarea>
 
             <button type="button" value="2" id="step">Passer à l'étape suivante</button>
         </div>
 
         <div id="step-3" class="product-details" style="display: none">
-            <select name="category">
+            <select name="category" required>
                 <?php
                 foreach ($categories as $category) : ?>
                     <option value="<?= $category['id'] ?>"><?= $category['title'] ?></option>
@@ -56,11 +84,11 @@
             <label for="brand">Marque</label>
                 <input type="text" name="brand" id="marque" placeholder="Marque">
 
-            <select name="color">
+            <select name="color" required>
                 <?php
-                foreach ($colors as $color) : ?>
-                    <option value="<?= $color['id'] ?>"><?= $color['title'] ?></option>
-                <?php endforeach;
+                    foreach ($colors as $color) : ?>
+                        <option value="<?= $color['id'] ?>"><?= $color['title'] ?></option>
+                    <?php endforeach;
                 ?>
             </select>
             <select name="matter">
@@ -70,14 +98,14 @@
                 <?php endforeach;
                 ?>
             </select>
-            <select name="state">
+            <select name="state" required>
                 <?php
                 foreach ($states as $state) : ?>
                     <option value="<?= $state['id'] ?>"><?= $state['title'] ?></option>
                 <?php endforeach;
                 ?>
             </select>
-            <select name="size">
+            <select name="size" required>
                 <?php
                 foreach ($sizes as $size) : ?>
                     <option value="<?= $size['id'] ?>"><?= $size['title'] ?></option>

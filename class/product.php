@@ -2,6 +2,7 @@
 
 Class Product
 {
+    public string $id;
     public function __construct(
         public string $ownerLastName,
         public string $ownerFirstName,
@@ -12,7 +13,7 @@ Class Product
         public string $category,
         public string $brand,
         public string $color,
-        public string $material,
+        public string $matter,
         public string $state,
         public string $size
     )
