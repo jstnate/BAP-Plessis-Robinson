@@ -26,11 +26,13 @@ var_dump($data);
             <option value="green">green</option>
         </select>
         <p>Name</p>
-        <input type="radio" name="order_name" value="DESC" checked>DESC
+        <input type="radio" name="order_name" value="DESC">DESC
         <input type="radio" name="order_name" value="ASC">ASC
+        <input type="radio" name="order_name" value="" checked>None
         <p>Date</p>
-        <input type="radio" name="order_date" value="DESC" checked>DESC
+        <input type="radio" name="order_date" value="DESC">DESC
         <input type="radio" name="order_date" value="ASC">ASC
+        <input type="radio" name="order_date" value="" checked>None
         <p></p>
         <input type="submit" value="Search">
     </form>
