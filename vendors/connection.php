@@ -15,6 +15,7 @@ class Connection
         $args = 0;
         if ($category != null){
             $query .= ' WHERE category = "'.$category.'"';
+            $args++;
         }
         //============== FILTER TILE ================= repeat the tile and change the filter to add one
         if ($color != null){
@@ -32,6 +33,7 @@ class Connection
         $args = 0;
         if($orderName != null){
             $query .= ' ORDER BY name '.$orderName;
+            $args++;
         }
         //============== SORTING TILE ================= repeat the tile and change the sorting to add one
         if($orderDate != null){
