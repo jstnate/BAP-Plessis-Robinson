@@ -15,15 +15,25 @@ var_dump($data);
     <form method="post">
         <select name="category">
             <option value="">-category-</option>
-            <option value="lol">lol</option>
-            <option value="lel">lel</option>
-            <option value="lul">lul</option>
+            <?php
+            $category = $connection->getSorting('category');
+            foreach($category as $index){
+                foreach($index as $value){
+                    echo '<option value="'.$value.'">'.$value.'</option>';
+                }
+            }
+            ?>
         </select>
         <select name="colors">
             <option value="">-colors-</option>
-            <option value="red">red</option>
-            <option value="blue">blue</option>
-            <option value="green">green</option>
+            <?php
+            $color = $connection->getSorting('color');
+            foreach($color as $index){
+                foreach($index as $value){
+                    echo '<option value="'.$value.'">'.$value.'</option>';
+                }
+            }
+            ?>
         </select>
         <p>Name</p>
         <input type="radio" name="order_name" value="DESC">DESC
@@ -40,7 +50,6 @@ var_dump($data);
     <?php
 
     if ($_POST){
-        echo "lo";
         header('Location: product.php?cat='.$_POST['category'].'&col='.$_POST['colors'].'&ordN='.$_POST['order_name'].'&ordD='.$_POST['order_date']);
     }
     ?>

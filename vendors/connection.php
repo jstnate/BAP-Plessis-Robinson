@@ -52,4 +52,11 @@ class Connection
         $productData->execute();
         return $productData->fetchAll(PDO::FETCH_ASSOC);
     }
+
+    public function getSorting($column){
+        $query = 'SELECT DISTINCT '.$column.' FROM `product`';
+        $columnData = $this->pdo->prepare($query);
+        $columnData->execute();
+        return $columnData->fetchAll(PDO::FETCH_ASSOC);
+    }
 }
