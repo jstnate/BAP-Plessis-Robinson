@@ -32,6 +32,5 @@ echo '<p>Description : ' . $produit['description'] . '</p>';
 
 ?>
 
-
 </body>
 </html>
