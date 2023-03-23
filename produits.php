@@ -1,7 +1,7 @@
 <?php
     require_once 'class/connection.php';
     $connection = new Connection();
-    $produits = $connection->getAllProducts();
+    $products = $connection->getAllProducts();
 
     $connection = new Connection();
     $data = $connection->getData(
@@ -9,7 +9,7 @@
         (isset($_GET['col'])) ? ($_GET['col']) : (null),
         (isset($_GET['ordN'])) ? ($_GET['ordN']) : (null),
         (isset($_GET['ordD'])) ? ($_GET['ordD']) : (null));
-        
+
     if ($_POST){
         header('Location: product.php?cat='.$_POST['category'].'&col='.$_POST['colors'].'&ordN='.$_POST['order_name'].'&ordD='.$_POST['order_date']);
     }
@@ -28,7 +28,7 @@
         <select name="category">
             <option value="">-category-</option>
             <?php
-            $category = $connection->getSorting('category');
+            $category = $connection->getSorting('categories');
             foreach($category as $index){
                 foreach($index as $value){
                     echo '<option value="'.$value.'">'.$value.'</option>';
@@ -39,7 +39,7 @@
         <select name="colors">
             <option value="">-colors-</option>
             <?php
-            $color = $connection->getSorting('color');
+            $color = $connection->getSorting('colors');
             foreach($color as $index){
                 foreach($index as $value){
                     echo '<option value="'.$value.'">'.$value.'</option>';
@@ -60,16 +60,37 @@
     </form>
     
     <?php 
-        foreach ($produits as $produit) {
-            echo '<a href="page_produit.php?id=' . $produit['id'] . '">';
-            echo '<img src="' . $produit['image'] . '" alt="' . $produit['titre'] . '">';
-            echo '</a>';
-            echo '<h2>' . $produit['titre'] . '</h2>';
-            echo '<p>' . $produit['date_publication'] .'</p>' ;
-            echo '<p>' . $produit['categorie'] . '</p>'; 
-            echo '<p>' . $produit['taille'] . '</p>' ;
-            echo '<p>' . $produit['etat'] . '</p>' ;
-        }
+        // foreach ($produits as $produit) {
+        //     echo '<a href="page_produit.php?id=' . $produit['id'] . '">';
+        //     echo '<img src="' . $produit['image'] . '" alt="' . $produit['titre'] . '">';
+        //     echo '</a>';
+        //     echo '<h2>' . $produit['title'] . '</h2>';
+        //     echo '<p>' . $produit['date_publication'] .'</p>' ;
+        //     echo '<p>' . $produit['categorie'] . '</p>'; 
+        //     echo '<p>' . $produit['taille'] . '</p>' ;
+        //     echo '<p>' . $produit['etat'] . '</p>' ;
+        // }
+
+        foreach ($products as $product) :
+            $category = $connection->getCategory($product['id']);
+            $state = $connection->getState($product['id']);
+            $size = $connection->getSize($product['id']);
+        ?>
+            <a href="page_produit.php?id=<?= $product['id'] ?>">
+                <img src="<?= $product['front'] ?>" alt="front pic">
+            </a>
+            <!-- <div class="image_slider">
+                <img src="<?= $product['front'] ?>" alt="front pis">
+                <img src="<?= $product['back'] ?>" alt="back pic">
+                <img src="<?= $product['side'] ?>" alt="side pic">
+            </div> -->
+            <h2><?= $product['title'] ?></h2>
+            <p><?= date("d/m/Y", strtotime($product['publication'])) ?></p>
+            <p><?= $category['title'] ?></p>
+            <p><?= $state['title'] ?></p>
+            <p><?= $size['title'] ?></p> 
+
+        <?php endforeach;
     ?>
 
 

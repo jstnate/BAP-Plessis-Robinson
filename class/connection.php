@@ -16,10 +16,22 @@ Class Connection
         return $this->pdo->query($query)->fetchAll();
     }
 
+    public function getCategory($id)
+    {
+        $query = "SELECT title FROM categories WHERE id = $id";
+        return $this->pdo->query($query)->fetch();
+    }
+
     public function getColors()
     {
         $query = "SELECT * FROM colors";
         return $this->pdo->query($query)->fetchAll();
+    }
+
+    public function getColor($id)
+    {
+        $query = "SELECT title FROM colors WHERE id = $id";
+        return $this->pdo->query($query)->fetch();
     }
 
     public function getMatters()
@@ -28,10 +40,22 @@ Class Connection
         return $this->pdo->query($query)->fetchAll();
     }
 
+    public function getMatter($id)
+    {
+        $query = "SELECT title FROM matters WHERE id = $id";
+        return $this->pdo->query($query)->fetch();
+    }
+
     public function getStates()
     {
         $query = "SELECT * FROM states";
         return $this->pdo->query($query)->fetchAll();
+    }
+
+    public function getState($id)
+    {
+        $query = "SELECT title FROM states WHERE id = $id";
+        return $this->pdo->query($query)->fetch();
     }
 
     public function getSizes()
@@ -40,17 +64,23 @@ Class Connection
         return $this->pdo->query($query)->fetchAll();
     }
 
+    public function getSize($id)
+    {
+        $query = "SELECT title FROM sizes WHERE id = $id";
+        return $this->pdo->query($query)->fetch();
+    }
+
     public function getAllProducts() {
-        $query = "SELECT * FROM produits";
-        $statement = $this->db->prepare($query);
+        $query = "SELECT * FROM products";
+        $statement = $this->pdo->prepare($query);
         $statement->execute();
         $produits = $statement->fetchAll(PDO::FETCH_ASSOC);
         return $produits;
     }
 
     public function getProductById($id) {
-        $query = "SELECT * FROM produits WHERE id = ?";
-        $statement = $this->db->prepare($query);
+        $query = "SELECT * FROM products WHERE id = ?";
+        $statement = $this->pdo->prepare($query);
         $statement->execute([$id]);
         $produit = $statement->fetch(PDO::FETCH_ASSOC);
         return $produit;
@@ -79,20 +109,20 @@ Class Connection
 //    ============== END INSERT =================
 
     public function getData($category, $color, $orderName, $orderDate){
-        $query = 'SELECT * FROM `product`';
+        $query = 'SELECT * FROM `products`';
     //======================== FILTERS ========================
         $args = 0;
         if ($category != null){
-            $query .= ' WHERE category = "'.$category.'"';
+            $query .= ' WHERE categories = "'.$category.'"';
             $args++;
         }
         //============== FILTER TILE ================= repeat the tile and change the filter to add one
         if ($color != null){
             if($args == 0){
-                $query .= ' WHERE color = "'.$color.'"';
+                $query .= ' WHERE colors = "'.$color.'"';
                 $args++;
             }else{
-                $query .= ' AND color = "'.$color.'"';
+                $query .= ' AND colors = "'.$color.'"';
             }
         }
         //============== END FILTER TILE =================
@@ -123,7 +153,7 @@ Class Connection
     }
 
     public function getSorting($column){
-        $query = 'SELECT DISTINCT '.$column.' FROM `product`';
+        $query = 'SELECT * FROM '.$column.'';
         $columnData = $this->pdo->prepare($query);
         $columnData->execute();
         return $columnData->fetchAll(PDO::FETCH_ASSOC);
