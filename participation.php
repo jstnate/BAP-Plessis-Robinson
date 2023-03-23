@@ -15,6 +15,9 @@
 // ==================== INSERT =================
     if ($_POST) :
 
+        $sku = uniqid();
+        
+
         $product = new Product(
             $_POST['lastname'],
             $_POST['firstname'],
@@ -22,6 +25,9 @@
             $_POST['phone'],
             $_POST['title'],
             $_POST['description'],
+            '' . $sku .'-' . $_FILES['front_pic']['name'],
+            '' . $sku .'-' . $_FILES['back_pic']['name'],
+            '' . $sku .'-' . $_FILES['side_pic']['name'],
             $_POST['category'],
             $_POST['brand'],
             $_POST['color'],
@@ -29,7 +35,14 @@
             $_POST['state'],
             $_POST['size']
         );
-        var_dump($product);
+
+        foreach (['front_pic', 'back_pic', 'side_pic'] as $key) {
+            $img_name = '' . $sku .'-' . $_FILES[$key]['name'];
+            $tmp_img_name = $_FILES[$key]['tmp_name'];
+            $temporary = 'images/uploads/products/';
+            move_uploaded_file($tmp_img_name,$temporary.$img_name);
+        }
+    
         $insert = $connection->insertProduct($product);
 
         echo $insert == true  ? 'Ajouté' :  'Erreur';
@@ -49,7 +62,7 @@
     <title>Participer aux dons</title>
 </head>
 <body>
-    <form method="POST">
+    <form method="POST" enctype="multipart/form-data">
         <div id="step-1" class="owner-infos">
             <label for="lastname">Nom</label>
                 <input type="text" name="lastname" id="lastname" placeholder="Nom">
@@ -68,6 +81,12 @@
                 <input type="text" name="title" id="title" placeholder="Titre du produit"  required>
             <label for="description">Description du produit</label>
                 <textarea name="description" id="description" cols="30" required></textarea>
+            <label for="front">Image de Face</label>
+                <input type="file" name="front_pic" id="front" accept="image/png, image/jpeg, image/jpg">
+            <label for="back">Image de Dos</label>
+                <input type="file" name="back_pic" id="back" accept="image/png, image/jpeg">
+            <label for="side">Image de Coté</label>
+                <input type="file" name="side_pic" id="side" accept="image/png, image/jpeg">
 
             <button type="button" value="2" id="step">Passer à l'étape suivante</button>
         </div>
