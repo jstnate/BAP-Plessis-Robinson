@@ -2,39 +2,32 @@
 require_once 'connection.php';
 
 $connection = new Connection();
-$data = $connection->getData(
-    (isset($_GET['cat'])) ? ($_GET['cat']) : (null),
-    (isset($_GET['col'])) ? ($_GET['col']) : (null),
-    (isset($_GET['ordN'])) ? ($_GET['ordN']) : (null),
-    (isset($_GET['ordD'])) ? ($_GET['ordD']) : (null));
-var_dump($data);
+//$data = $connection->getData(
+//    (isset($_GET['cat'])) ? ($_GET['cat']) : (null),
+//    (isset($_GET['col'])) ? ($_GET['col']) : (null),
+//    (isset($_GET['ordN'])) ? ($_GET['ordN']) : (null),
+//    (isset($_GET['ordD'])) ? ($_GET['ordD']) : (null));
+//var_dump($data);
 //echo '<a href="product?cat=&col=&ordN=DESC&ordD=DESC"</a><br>';
+$allFilters = $connection->getAllFilters();
 ?>
 <html>
 <body>
     <form method="post">
-        <select name="category">
-            <option value="">-category-</option>
-            <?php
-            $category = $connection->getSorting('category');
-            foreach($category as $index){
+        <input type="text"><br><br>
+
+        <?php
+        foreach ($allFilters as $filter) {
+            $filterValues = $connection->getSorting($filter);
+            echo $filter.'<br>';
+            foreach($filterValues as $index){
                 foreach($index as $value){
-                    echo '<option value="'.$value.'">'.$value.'</option>';
+                    echo '<input type="checkbox" name="'.$value.'">'.$value.'<br>';
                 }
             }
-            ?>
-        </select>
-        <select name="colors">
-            <option value="">-colors-</option>
-            <?php
-            $color = $connection->getSorting('color');
-            foreach($color as $index){
-                foreach($index as $value){
-                    echo '<option value="'.$value.'">'.$value.'</option>';
-                }
-            }
-            ?>
-        </select>
+        }
+        ?>
+
         <p>Name</p>
         <input type="radio" name="order_name" value="DESC">DESC
         <input type="radio" name="order_name" value="ASC">ASC

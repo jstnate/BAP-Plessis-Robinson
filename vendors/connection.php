@@ -6,7 +6,7 @@ class Connection
 
     public function __construct()
     {
-        $this->pdo = new PDO('mysql:dbname=bap;host=127.0.0.1', 'root', '');
+        $this->pdo = new PDO('mysql:dbname=bap2;host=127.0.0.1', 'root', '');
     }
 
     public function getData($category, $color, $orderName, $orderDate){
@@ -53,10 +53,23 @@ class Connection
         return $productData->fetchAll(PDO::FETCH_ASSOC);
     }
 
-    public function getSorting($column){
-        $query = 'SELECT DISTINCT '.$column.' FROM `product`';
-        $columnData = $this->pdo->prepare($query);
-        $columnData->execute();
-        return $columnData->fetchAll(PDO::FETCH_ASSOC);
+    public function getSorting($filterTable){
+        $query = 'SELECT title FROM '.$filterTable;
+        $tableData = $this->pdo->prepare($query);
+        $tableData->execute();
+        return $tableData->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+    public function getAllFilters(){
+        $query = 'SHOW COLUMNS FROM bap2.products';
+        $tableData = $this->pdo->prepare($query);
+        $tableData->execute();
+        $tableData = $tableData->fetchAll(PDO::FETCH_COLUMN, 0);
+        $negativeColumns = ['id','owner_lastname','owner_firstname','owner_email','owner_phone','title','description','brand','publication'];
+        foreach ($negativeColumns as $column) {
+            $index = array_search($column, $tableData);
+            unset($tableData[$index]);
+        }
+        return $tableData;
     }
 }
