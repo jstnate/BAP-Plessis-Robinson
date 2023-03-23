@@ -22,7 +22,7 @@ $allFilters = $connection->getAllFilters();
             echo $filter.'<br>';
             foreach($filterValues as $index){
                 foreach($index as $value){
-                    echo '<input type="checkbox" name="'.$value.'">'.$value.'<br>';
+                    echo '<input type="checkbox" name="'.str_replace(' ','_',$value).'">'.$value.'<br>';
                 }
             }
         }
@@ -43,7 +43,27 @@ $allFilters = $connection->getAllFilters();
     <?php
 
     if ($_POST){
-        header('Location: product.php?cat='.$_POST['category'].'&col='.$_POST['colors'].'&ordN='.$_POST['order_name'].'&ordD='.$_POST['order_date']);
+        $parameters = '';
+        $argsI = 0;
+        $argsV = 0;
+        foreach ($allFilters as $filter) {
+            $filterValues = $connection->getSorting($filter);
+            if($argsI == 0){
+                $parameters .= '?'.$filter.'=';
+                $argsI++;
+            }else{
+                $parameters .= '&'.$filter.'=';
+            }
+            foreach($filterValues as $index){
+                foreach($index as $value){
+                    if(isset($_POST[str_replace(' ','_',$value)])){
+                        $parameters .= str_replace(' ','_',$value).'|';
+                    }
+                }
+            }
+        }
+//        echo $parameters;
+        header('Location: product.php'.$parameters);
     }
     ?>
 
