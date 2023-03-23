@@ -43,7 +43,7 @@ Class Connection
 //    ============== INSERT =================
     public function insertProduct(Product $product): bool
     {
-        $query = "INSERT INTO products (owner_lastname, owner_firstname, owner_email, owner_phone, title, description, category, brand, color, matter, state, size) VALUES (:lastname,  :firstname,  :email, :phone, :title, :description, :category, :brand, :color, :matter, :state, :size)";
+        $query = "INSERT INTO products (owner_lastname, owner_firstname, owner_email, owner_phone, title, description, front_pic, back_pic, side_pic, category, brand, color, matter, state, size) VALUES (:lastname,  :firstname,  :email, :phone, :title, :description, :front, :back, :side, :category, :brand, :color, :matter, :state, :size)";
 
         return $this->pdo->prepare($query)->execute([
             'lastname' => $product->ownerLastName,
@@ -52,6 +52,9 @@ Class Connection
             'phone' => $product->ownerPhone,
             'title' => $product->title,
             'description' => $product->description,
+            'front' => $product->front_pic,
+            'back' => $product->back_pic,
+            'side' => $product->side_pic,
             'category' => $product->category,
             'brand' => $product->brand,
             'color' => $product->color,
