@@ -10,11 +10,22 @@ $connection = new Connection();
 //var_dump($data);
 //echo '<a href="product?cat=&col=&ordN=DESC&ordD=DESC"</a><br>';
 $allFilters = $connection->getAllFilters();
+$globalFilterArray = array();
+foreach ($allFilters as $filter){
+    if(isset($_GET[$filter])){
+        if($_GET[$filter] != null){
+            $temporaryFilterArray = explode("|", str_replace('_',' ',$_GET[$filter]));
+            array_push($temporaryFilterArray, $filter);
+            array_push($globalFilterArray, $temporaryFilterArray);
+        }
+    }
+}
+var_dump($globalFilterArray);
 ?>
 <html>
 <body>
     <form method="post">
-        <input type="text"><br><br>
+        <input type="text" name="query"><br><br>
 
         <?php
         foreach ($allFilters as $filter) {
@@ -63,7 +74,7 @@ $allFilters = $connection->getAllFilters();
             }
         }
 //        echo $parameters;
-        header('Location: product.php'.$parameters);
+        header('Location: product.php'.$parameters.'&query='.$_POST['query'].'&orderN='.$_POST['order_name'].'&orderD='.$_POST['order_date']);
     }
     ?>
 
