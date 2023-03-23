@@ -60,16 +60,6 @@
     </form>
     
     <?php 
-        // foreach ($produits as $produit) {
-        //     echo '<a href="page_produit.php?id=' . $produit['id'] . '">';
-        //     echo '<img src="' . $produit['image'] . '" alt="' . $produit['titre'] . '">';
-        //     echo '</a>';
-        //     echo '<h2>' . $produit['title'] . '</h2>';
-        //     echo '<p>' . $produit['date_publication'] .'</p>' ;
-        //     echo '<p>' . $produit['categorie'] . '</p>'; 
-        //     echo '<p>' . $produit['taille'] . '</p>' ;
-        //     echo '<p>' . $produit['etat'] . '</p>' ;
-        // }
 
         foreach ($products as $product) :
             $category = $connection->getCategory($product['id']);
@@ -77,7 +67,7 @@
             $size = $connection->getSize($product['id']);
         ?>
             <a href="page_produit.php?id=<?= $product['id'] ?>">
-                <img src="<?= $product['front'] ?>" alt="front pic">
+                <img src="images/uploads//products/<?= $product['front_pic'] ?>" alt="front pic">
             </a>
             <!-- <div class="image_slider">
                 <img src="<?= $product['front'] ?>" alt="front pis">

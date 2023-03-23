@@ -1,5 +1,11 @@
 <?php
 require_once 'class/connection.php';
+$connection = new Connection();
+$id = $_GET['id'];
+$product = $connection->getProductById($id);
+$category = $connection->getCategory($product['id']);
+$state = $connection->getState($product['id']);
+$size = $connection->getSize($product['id']);
 
 ?>
 
@@ -14,23 +20,12 @@ require_once 'class/connection.php';
 </head>
 <body>
     
-<?php 
- // Récupération des informations du produit
-$id = $_GET['id'];
-$produit = $produit->getProductById($id);
-
-// Affichage des informations du produit
-echo '<img src="' . $produit['image'] . '" alt="' . $produit['titre'] . '">';
-echo '<h1>' . $produit['titre'] . '</h1>';
-echo '<p>Date de publication : ' . $produit['date_publication'] . '</p>';
-echo '<p>Catégorie : ' . $produit['categorie'] . '</p>';
-echo '<p>Taille : ' . $produit['taille'] . '</p>';
-echo '<p>État : ' . $produit['etat'] . '</p>';
-echo '<p>Matériau : ' . $produit['materiau'] . '</p>';
-echo '<p>Couleur : ' . $produit['couleur'] . '</p>';
-echo '<p>Description : ' . $produit['description'] . '</p>';
-
-?>
+<!-- Affichage des informations du produit -->
+    <h2><?= $product['title'] ?></h2>
+    <p><?= date("d/m/Y", strtotime($product['publication'])) ?></p>
+    <p><?= $category['title'] ?></p>
+    <p><?= $state['title'] ?></p>
+    <p><?= $size['title'] ?></p> 
 
 </body>
 </html>
