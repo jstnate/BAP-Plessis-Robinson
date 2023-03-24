@@ -21,6 +21,7 @@ foreach ($allFilters as $filter){
     }
 }
 var_dump($globalFilterArray);
+var_dump($connection->getData($globalFilterArray));
 ?>
 <html>
 <body>
