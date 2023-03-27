@@ -12,8 +12,11 @@ class Connection
     public function getData($filtersArrays){
         $query = 'SELECT * FROM `products`';
         $allFilters = $this->getAllFilters();
-        $isWhere = 0;
+        $isFirstAnd = 0;
 
+        if($filtersArrays != null){
+            $query .= ' WHERE ';
+        }
 
         foreach($filtersArrays as $filterArray){
             foreach($allFilters as $stockedFilter){
@@ -22,22 +25,28 @@ class Connection
                         for($i = 0; $i < 2; $i++){
                             unset($filterArray[count($filterArray)-1]);
                         }
+                        if($isFirstAnd == 0){
+                            $isFirstAnd++;
+                        }else{
+                            $query .= ' AND ';
+                        }
+                        $query .= '(';
                         foreach($filterArray as $filter){
-                            if($isWhere == 0){
-                                $query .= ' WHERE '.$stockedFilter.' = "'.$filter.'"';
-                                $isWhere++;
-                            }else{
-                                $query .= ' OR '.$stockedFilter.' = "'.$filter.'"';
+                            $query .= $stockedFilter.' = "'.$filter.'"';
+                            $lastArg = $filterArray[count($filterArray)-1];
+                            if($lastArg != $filter){
+                                $query .= ' OR ';
                             }
                         }
+                        $query .= ')';
                     }
                 }
             }
         }
-//        return $query;
-        $productData = $this->pdo->prepare($query);
-        $productData->execute();
-        return $productData->fetchAll(PDO::FETCH_ASSOC);
+        return $query;
+//        $productData = $this->pdo->prepare($query);
+//        $productData->execute();
+//        return $productData->fetchAll(PDO::FETCH_ASSOC);
     }
 
     public function getSorting($filterTable){
