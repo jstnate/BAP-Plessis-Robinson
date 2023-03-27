@@ -33,9 +33,7 @@ var_dump($connection->getData($globalFilterArray));
             $filterValues = $connection->getSorting($filter);
             echo $filter.'<br>';
             foreach($filterValues as $index){
-                foreach($index as $value){
-                    echo '<input type="checkbox" name="'.str_replace(' ','_',$value).'">'.$value.'<br>';
-                }
+                echo '<input type="checkbox" name="'.str_replace(' ','_',$index['title']).'">'.$index['title'].'<br>';
             }
         }
         ?>
@@ -67,10 +65,8 @@ var_dump($connection->getData($globalFilterArray));
                 $parameters .= '&'.$filter.'=';
             }
             foreach($filterValues as $index){
-                foreach($index as $value){
-                    if(isset($_POST[str_replace(' ','_',$value)])){
-                        $parameters .= str_replace(' ','_',$value).'|';
-                    }
+                if(isset($_POST[str_replace(' ','_',$index['title'])])){
+                    $parameters .= str_replace(' ','_',$index['id']).'|';
                 }
             }
         }

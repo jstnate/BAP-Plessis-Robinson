@@ -34,14 +34,14 @@ class Connection
                 }
             }
         }
-        return $query;
-//        $productData = $this->pdo->prepare($query);
-//        $productData->execute();
-//        return $productData->fetchAll(PDO::FETCH_ASSOC);
+//        return $query;
+        $productData = $this->pdo->prepare($query);
+        $productData->execute();
+        return $productData->fetchAll(PDO::FETCH_ASSOC);
     }
 
     public function getSorting($filterTable){
-        $query = 'SELECT title FROM '.$filterTable;
+        $query = 'SELECT id, title FROM '.$filterTable;
         $tableData = $this->pdo->prepare($query);
         $tableData->execute();
         return $tableData->fetchAll(PDO::FETCH_ASSOC);
