@@ -25,8 +25,12 @@ foreach ($allFilters as $filter){
 array_push($sortings, (isset($_GET['orderN'])) ? ($_GET['orderN']) : (null));
 array_push($sortings, (isset($_GET['orderD'])) ? ($_GET['orderD']) : (null));
 
-var_dump($globalFilterArray);
-var_dump($connection->getData($globalFilterArray, (isset($_GET['query'])) ? ($_GET['query']) : (null), $sortings));
+//var_dump($globalFilterArray);
+$datas = $connection->getData($globalFilterArray, (isset($_GET['query'])) ? ($_GET['query']) : (null), $sortings);
+
+foreach ($datas as $data){
+    echo $data['owner_email'].' - '.$data['title'].' - '.$data['description'].' - '.$data['categories'].' - '.$data['colors'].' - '.$data['matters'].' - '.$data['states'].' - '.$data['sizes'].' - '.$data['publication'].'<br>';
+}
 
 if ($_POST) {
     $parameters = '';
