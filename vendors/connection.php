@@ -9,44 +9,64 @@ class Connection
         $this->pdo = new PDO('mysql:dbname=bap2;host=127.0.0.1', 'root', '');
     }
 
-    public function getData($filtersArrays){
+    public function getData($filtersArrays, $queryTitle, $sortingsArray){
         $query = 'SELECT * FROM `products`';
         $allFilters = $this->getAllFilters();
         $isFirstAnd = 0;
+        $isFirstSorted = 0;
 
-        if($filtersArrays != null){
+        if($filtersArrays != null) {
             $query .= ' WHERE ';
-        }
 
-        foreach($filtersArrays as $filterArray){
-            foreach($allFilters as $stockedFilter){
-                if($filterArray != null){
-                    if($filterArray[count($filterArray)-1] == $stockedFilter){
-                        for($i = 0; $i < 2; $i++){
-                            unset($filterArray[count($filterArray)-1]);
-                        }
-                        if($isFirstAnd == 0){
-                            $isFirstAnd++;
-                        }else{
-                            $query .= ' AND ';
-                        }
-                        $query .= '(';
-                        foreach($filterArray as $filter){
-                            $query .= $stockedFilter.' = "'.$filter.'"';
-                            $lastArg = $filterArray[count($filterArray)-1];
-                            if($lastArg != $filter){
-                                $query .= ' OR ';
+            foreach ($filtersArrays as $filterArray) {
+                foreach ($allFilters as $stockedFilter) {
+                    if ($filterArray != null) {
+                        if ($filterArray[count($filterArray) - 1] == $stockedFilter) {
+                            for ($i = 0; $i < 2; $i++) {
+                                unset($filterArray[count($filterArray) - 1]);
                             }
+                            if ($isFirstAnd == 0) {
+                                $isFirstAnd++;
+                            } else {
+                                $query .= ' AND ';
+                            }
+                            $query .= '(';
+                            foreach ($filterArray as $filter) {
+                                $query .= $stockedFilter . ' = "' . $filter . '"';
+                                $lastArg = $filterArray[count($filterArray) - 1];
+                                if ($lastArg != $filter) {
+                                    $query .= ' OR ';
+                                }
+                            }
+                            $query .= ')';
                         }
-                        $query .= ')';
                     }
                 }
             }
         }
-        return $query;
-//        $productData = $this->pdo->prepare($query);
-//        $productData->execute();
-//        return $productData->fetchAll(PDO::FETCH_ASSOC);
+        if($queryTitle != null){
+            if($isFirstAnd == 0){
+                $query .= ' WHERE title LIKE "%'.$queryTitle.'%"';
+            }else{
+                $query .= ' AND title LIKE "%'.$queryTitle.'%"';
+            }
+        }
+        if($sortingsArray[0] != null){
+            $query .= ' ORDER BY title '.$sortingsArray[0];
+            $isFirstSorted++;
+        }
+        if($sortingsArray[1] != null){
+            if($isFirstSorted == 0){
+                $query .= ' ORDER BY publication '.$sortingsArray[1];
+            }else{
+                $query .= ', publication '.$sortingsArray[1];
+            }
+        }
+
+//        return $query;
+        $productData = $this->pdo->prepare($query);
+        $productData->execute();
+        return $productData->fetchAll(PDO::FETCH_ASSOC);
     }
 
     public function getSorting($filterTable){

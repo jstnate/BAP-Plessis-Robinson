@@ -11,6 +11,7 @@ $connection = new Connection();
 //echo '<a href="product?cat=&col=&ordN=DESC&ordD=DESC"</a><br>';
 $allFilters = $connection->getAllFilters();
 $globalFilterArray = array();
+$sortings = array();
 foreach ($allFilters as $filter){
     if(isset($_GET[$filter])){
         if($_GET[$filter] != null){
@@ -20,8 +21,12 @@ foreach ($allFilters as $filter){
         }
     }
 }
+
+array_push($sortings, (isset($_GET['orderN'])) ? ($_GET['orderN']) : (null));
+array_push($sortings, (isset($_GET['orderD'])) ? ($_GET['orderD']) : (null));
+
 var_dump($globalFilterArray);
-var_dump($connection->getData($globalFilterArray));
+var_dump($connection->getData($globalFilterArray, (isset($_GET['query'])) ? ($_GET['query']) : (null), $sortings));
 
 if ($_POST) {
     $parameters = '';
