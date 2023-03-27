@@ -69,30 +69,30 @@
             <label for="firstname">Prénom</label>
                 <input type="text" name="firstname" id="firstname" placeholder="Prénom">
             <label for="email">Email</label>
-                <input type="email" name="email" id="email" placeholder="Email" required>
+                <input type="email" name="email" id="required-1" placeholder="Email" required>
             <label for="phone">Téléphone</label>
-                <input type="tel" name="phone" id="phone" placeholder="Téléphone">
+                <input type="tel" name="phone" id="required-1" placeholder="Téléphone">
 
-            <button type="button" value="1" id="step">Passer à l'étape suivante</button>
+            <button type="button" value="1" id="submit-1" disabled>Passer à l'étape suivante</button>
         </div>
 
-        <div id="step-2" class="product-infos" style="display: none">
+        <div id="step-2" class="product-infos" style="display: block">
             <label for="title">Titre du produit</label>
-                <input type="text" name="title" id="title" placeholder="Titre du produit"  required>
+                <input type="text" name="title" id="required-2" placeholder="Titre du produit"  required>
             <label for="description">Description du produit</label>
-                <textarea name="description" id="description" cols="30" required></textarea>
+                <textarea name="description" id="required-2" cols="30" required></textarea>
             <label for="front">Image de Face</label>
-                <input type="file" name="front_pic" id="front" accept="image/png, image/jpeg, image/jpg">
+                <input type="file" name="front_pic" id="required-2" accept="image/png, image/jpeg, image/jpg">
             <label for="back">Image de Dos</label>
                 <input type="file" name="back_pic" id="back" accept="image/png, image/jpeg">
             <label for="side">Image de Coté</label>
                 <input type="file" name="side_pic" id="side" accept="image/png, image/jpeg">
 
-            <button type="button" value="2" id="step">Passer à l'étape suivante</button>
+            <button type="button" value="2" id="submit-2" disabled>Passer à l'étape suivante</button>
         </div>
 
-        <div id="step-3" class="product-details" style="display: none">
-            <select name="category" required>
+        <div id="step-3" class="product-details" style="display: block">
+            <select name="category" id="required-3" required>
                 <?php
                 foreach ($categories as $category) : ?>
                     <option value="<?= $category['id'] ?>"><?= $category['title'] ?></option>
@@ -103,7 +103,7 @@
             <label for="brand">Marque</label>
                 <input type="text" name="brand" id="marque" placeholder="Marque">
 
-            <select name="color" required>
+            <select name="color" id="required-3" required>
                 <?php
                     foreach ($colors as $color) : ?>
                         <option value="<?= $color['id'] ?>"><?= $color['title'] ?></option>
@@ -117,14 +117,14 @@
                 <?php endforeach;
                 ?>
             </select>
-            <select name="state" required>
+            <select name="state" id="required-3" required>
                 <?php
                 foreach ($states as $state) : ?>
                     <option value="<?= $state['id'] ?>"><?= $state['title'] ?></option>
                 <?php endforeach;
                 ?>
             </select>
-            <select name="size" required>
+            <select name="size" id="required-3" required>
                 <?php
                 foreach ($sizes as $size) : ?>
                     <option value="<?= $size['id'] ?>"><?= $size['title'] ?></option>
@@ -132,7 +132,7 @@
                 ?>
             </select>
 
-            <button type="submit">Effectuer mon don !</button>
+            <button type="submit" id="submit-3" disabled>Effectuer mon don !</button>
         </div>
     </form>
 </body>

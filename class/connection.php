@@ -12,61 +12,61 @@ Class Connection
 //    ============== GET =================
     public function getCategories()
     {
-        $query = "SELECT * FROM categories";
+        $query = "SELECT * FROM category";
         return $this->pdo->query($query)->fetchAll();
     }
 
     public function getCategory($id)
     {
-        $query = "SELECT title FROM categories WHERE id = $id";
+        $query = "SELECT title FROM category WHERE id = $id";
         return $this->pdo->query($query)->fetch();
     }
 
     public function getColors()
     {
-        $query = "SELECT * FROM colors";
+        $query = "SELECT * FROM color";
         return $this->pdo->query($query)->fetchAll();
     }
 
     public function getColor($id)
     {
-        $query = "SELECT title FROM colors WHERE id = $id";
+        $query = "SELECT title FROM color WHERE id = $id";
         return $this->pdo->query($query)->fetch();
     }
 
     public function getMatters()
     {
-        $query = "SELECT * FROM matters";
+        $query = "SELECT * FROM matter";
         return $this->pdo->query($query)->fetchAll();
     }
 
     public function getMatter($id)
     {
-        $query = "SELECT title FROM matters WHERE id = $id";
+        $query = "SELECT title FROM matter WHERE id = $id";
         return $this->pdo->query($query)->fetch();
     }
 
     public function getStates()
     {
-        $query = "SELECT * FROM states";
+        $query = "SELECT * FROM state";
         return $this->pdo->query($query)->fetchAll();
     }
 
     public function getState($id)
     {
-        $query = "SELECT title FROM states WHERE id = $id";
+        $query = "SELECT title FROM state WHERE id = $id";
         return $this->pdo->query($query)->fetch();
     }
 
     public function getSizes()
     {
-        $query = "SELECT * FROM sizes";
+        $query = "SELECT * FROM size";
         return $this->pdo->query($query)->fetchAll();
     }
 
     public function getSize($id)
     {
-        $query = "SELECT title FROM sizes WHERE id = $id";
+        $query = "SELECT title FROM size WHERE id = $id";
         return $this->pdo->query($query)->fetch();
     }
 
