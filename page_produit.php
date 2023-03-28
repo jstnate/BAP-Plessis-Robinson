@@ -18,7 +18,7 @@ $size = $connection->getSize($product['id']);
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="public/css/pages/product.css">
+    <link rel="stylesheet" href="public/css/style.css">
     <title>Page produits</title>
 </head>
 <body>
@@ -34,7 +34,7 @@ $size = $connection->getSize($product['id']);
 
     <div class="product-page">
     <div class="product-image">
-         <img src="images/uploads/products/Photos1.png" alt="front pic">
+         <img src="images/uploads/products//<?= $product['front_pic'] ?>" alt="front pic">
     </div>
     <div class="product-details">
         <h1 class="product-title"><?= $product['title'] ?></h1>
