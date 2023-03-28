@@ -1,30 +1,5 @@
-// let index = 1;
-
-// let nextForm = document.querySelectorAll('#step');
-
-// nextForm.forEach(next => {
-//     next.addEventListener('click', nextStep(next))
-// })
-
-// function nextStep(next) {
-//         // let currentDiv = document.getElementById(`step-${next.value}`)
-//         // let nextDiv = document.getElementById(`step-${parseInt(next.value) + 1}`)
-//         // currentDiv.style.display = 'none'
-//         // nextDiv.style.display = 'block'
-//         console.log(next);
-// }
-
-
-// function formStep() {
-//     // let requiredFields = document.querySelectorAll(`#required-${index}`);
-
-//     // requiredFields.forEach(field => {
-//     //     field.length === 0 ? stepButton.disabled = true : nextStep(stepButton);
-//     // })
-//     console.log('caca');
-// }
 let index = 1;
-let requiredFields = document.querySelectorAll(`#required-1`)
+let requiredFields = document.querySelectorAll(`.required-1`)
 let nextButton = document.getElementById('submit-1');
 
 window.onload = varSetup();
@@ -56,10 +31,26 @@ function showNextFields() {
     let currentDiv = document.getElementById(`step-${index}`);
     index++;
     let nextDiv = document.getElementById(`step-${index}`);
-    requiredFields = document.querySelectorAll(`#required-${index}`);
+    requiredFields = document.querySelectorAll(`.required-${index}`);
     nextButton = document.getElementById(`submit-${index}`);
     currentDiv.style.display = 'none';
-    nextDiv.style.display = 'block';
+    nextDiv.style.display = 'flex';
     varSetup();
 }
+
+const fileInputs = document.querySelectorAll('input[type="file"]');
+
+fileInputs.forEach(fileInput => {
+    fileInput.addEventListener('change', () => {
+        let fileBox = document.getElementById(`${fileInput.id}-dropbox`)
+        let fileName = document.getElementById(`${fileInput.id}-file-name`)
+        if (fileInput.files.length > 0) {
+          fileBox.classList.add('filled');
+          console.log(fileBox.classList)
+          fileName.textContent = fileInput.files[0].name;
+        } else {
+          fileName.textContent = '';
+        }
+      });
+})
 
