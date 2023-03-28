@@ -1,0 +1,40 @@
+body, html{
+  margin: 0;
+  padding: 0;
+  background-color: #FFFFFF;
+  font-family: 'Chakra Petch', sans-serif;
+  font-family: 'Poppins', sans-serif;
+}
+
+.sidenav{
+  height: 100%;
+  width: 260px;
+  position: fixed;
+  text-align: left;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  background-color: #E7F1FA;
+  overflow-x: hidden;
+  font-size: 14px;
+  div{
+    margin: 0 0 0 20%;
+  }
+  p{
+    margin: 0;
+  }
+  h4{
+    margin: 1rem 0 0 0;
+  }
+}
+
+.sorting{
+  margin-left: 0!important;
+  display: flex;
+  white-space: nowrap;
+
+}
+
+.main{
+  margin-left: 260px;
+}
