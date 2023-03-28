@@ -4,6 +4,8 @@ $connection = new Connection();
 $id = $_GET['id'];
 $product = $connection->getProductById($id);
 $category = $connection->getCategory($product['id']);
+$color = $connection->getColor($product['id']);
+$matter = $connection->getMatter($product['id']);
 $state = $connection->getState($product['id']);
 $size = $connection->getSize($product['id']);
 
@@ -24,8 +26,12 @@ $size = $connection->getSize($product['id']);
     <h2><?= $product['title'] ?></h2>
     <p><?= date("d/m/Y", strtotime($product['publication'])) ?></p>
     <p><?= $category['title'] ?></p>
+    <p><?= $product['brand'] ?></p> 
+    <p><?= $color['title'] ?></p>
+    <p><?= $matter['title'] ?></p>
     <p><?= $state['title'] ?></p>
     <p><?= $size['title'] ?></p> 
+    <p><?= $product['description'] ?></p> 
 
 </body>
 </html>
