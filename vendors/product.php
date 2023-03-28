@@ -104,7 +104,8 @@ if ($_POST) {
             <div class="products-content">
                 <?php
                 foreach ($datas as $data){
-                    echo '<div>'.$data['title'].' - '.$connection->getFilterTitlesByID('categories',$data['categories'])['title'].' - '.$connection->getFilterTitlesByID('states',$data['states'])['title'].' - '.$connection->getFilterTitlesByID('sizes',$data['sizes'])['title'].' - '.$data['publication'].'</div>';
+                    echo '<div><img src="../images/placeholder-image.jpg" alt="placeholder" width="300px">';
+                    echo $data['title'].' - '.$connection->getFilterTitlesByID('categories',$data['categories'])['title'].' - '.$connection->getFilterTitlesByID('states',$data['states'])['title'].' - '.$connection->getFilterTitlesByID('sizes',$data['sizes'])['title'].' - '.$data['publication'].'</div>';
                 }
                 ?>
             </div>
@@ -112,7 +113,6 @@ if ($_POST) {
         </div>
     </div>
 </div>
-
 
 </body>
 </html>
