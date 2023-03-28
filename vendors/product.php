@@ -97,7 +97,7 @@ if ($_POST) {
         <div class="products">
             <div class="searchbar">
                 <form method="post">
-                    <input type="text" name="query" placeholder="nom" style="outline: none">
+                    <input type="text" name="query" placeholder="nom" style="outline: none;width: 100%">
                     <input type="submit" value="Chercher">
                 </form>
             </div><br>
