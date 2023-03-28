@@ -17,7 +17,12 @@
   justify-content: center;
   gap: 20px;
   width: 100vw;
-  height: 100vh;
+  min-height: 100vh;
+}
+@media screen and (max-width: 950px) {
+  .participation__content {
+    flex-direction: column;
+  }
 }
 .participation__content__banner {
   display: flex;
@@ -30,11 +35,42 @@
   width: 20vw;
   background-color: #E7F1FA;
 }
+@media screen and (max-width: 1000px) {
+  .participation__content__banner {
+    width: 25vw;
+  }
+}
+@media screen and (max-width: 950px) {
+  .participation__content__banner {
+    width: 80vw;
+    height: 30vh;
+  }
+}
+@media screen and (max-width: 768px) {
+  .participation__content__banner {
+    width: 90vw;
+  }
+}
+@media screen and (max-width: 580px) {
+  .participation__content__banner {
+    width: 100vw;
+  }
+}
 .participation__content__banner h1 {
   font-size: 24px;
   font-weight: 900;
   color: #333;
   text-align: center;
+}
+@media screen and (max-width: 1000px) {
+  .participation__content__banner h1 {
+    font-size: 20px;
+  }
+}
+@media screen and (max-width: 950px) {
+  .participation__content__banner h1 {
+    font-size: 24px;
+  }
 }
 .participation__content__banner p {
   font-size: 16px;
@@ -52,7 +88,22 @@
   justify-content: flex-start;
   gap: 50px;
   flex-wrap: wrap;
-  overflow: hidden;
+}
+@media screen and (max-width: 950px) {
+  .participation__content__form {
+    width: 80vw;
+    height: auto;
+  }
+}
+@media screen and (max-width: 768px) {
+  .participation__content__form {
+    width: 90vw;
+  }
+}
+@media screen and (max-width: 580px) {
+  .participation__content__form {
+    width: 100vw;
+  }
 }
 .participation__content__form__div {
   margin: 0;
@@ -68,6 +119,20 @@
   border: none;
   background: #E7F1FA;
 }
+@media screen and (max-width: 1000px) {
+  .participation__content__form__div {
+    padding: 4rem 1rem;
+    height: auto;
+    min-height: 60vh;
+    gap: 8vh;
+  }
+}
+@media screen and (max-width: 450px) {
+  .participation__content__form__div {
+    padding: 4rem 0.5rem;
+    gap: 6vh;
+  }
+}
 .participation__content__form__div header {
   text-align: center;
 }
@@ -77,10 +142,20 @@
   width: 70%;
   margin: 0 auto 10px;
 }
+@media screen and (max-width: 450px) {
+  .participation__content__form__div header h2 {
+    width: 90%;
+  }
+}
 .participation__content__form__div header p {
   width: 70%;
   margin: 0 auto;
   opacity: 0.6;
+}
+@media screen and (max-width: 450px) {
+  .participation__content__form__div header p {
+    width: 90%;
+  }
 }
 .participation__content__form__div section {
   display: flex;
@@ -89,6 +164,12 @@
   justify-content: center;
   gap: 20px;
   width: 80%;
+}
+@media screen and (max-width: 450px) {
+  .participation__content__form__div section {
+    width: 90%;
+    gap: 15px;
+  }
 }
 .participation__content__form__div section div {
   width: 100%;
@@ -143,8 +224,16 @@
   border: none;
   padding: 10px;
 }
+.participation__content__form__products section .textarea textarea:focus {
+  outline: none;
+}
 .participation__content__form__details {
   padding: 2rem;
+}
+@media screen and (max-width: 1000px) {
+  .participation__content__form__details {
+    padding: 2rem 1rem;
+  }
 }
 .participation__content__form__details section {
   gap: 10px;
@@ -154,6 +243,11 @@
   justify-content: space-between;
   align-items: center;
   gap: 20px;
+}
+@media screen and (max-width: 850px) {
+  .participation__content__form__details section div.dropbox {
+    flex-direction: column;
+  }
 }
 .participation__content__form__details section div div {
   flex-direction: column;
@@ -180,6 +274,11 @@
   flex-direction: column;
   align-items: center;
   justify-content: space-between;
+}
+@media screen and (max-width: 850px) {
+  .participation__content__form__details section div .file-drop-zone {
+    width: 100%;
+  }
 }
 .participation__content__form__details section div .file-drop-zone:hover {
   border-color: #5C9FDE;

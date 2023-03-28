@@ -73,7 +73,7 @@
             </p>
         </aside>
         <form class="participation__content__form" method="POST" enctype="multipart/form-data" <?php if (isset($insert) && $insert) echo 'style="display: none;"' ?> >
-            <fieldset id="step-1" class="participation__content__form__div participation__content__form__owner">
+            <fieldset id="step-1" class="participation__content__form__div participation__content__form__owner" style="display: flex;">
                 <header>
                     <h2>Vos coordonnées</h2>
                     <p>Veuillez renseigner cos coordonnées pour que les potentiels intéressés puisses vous contacter</p>
@@ -104,7 +104,7 @@
                 <button type="button" value="1" id="submit-1" disabled>Passer à l'étape suivante</button>
             </fieldset>
 
-            <fieldset id="step-2" class="participation__content__form__div participation__content__form__products">
+            <fieldset id="step-2" class="participation__content__form__div participation__content__form__products" style="display: none;">
                 <header>
                     <h2>Informations Principales</h2>
                     <p>Veuillez renseigner les informations principales du produit dont vous souhaitez faire don</p>
@@ -124,7 +124,7 @@
                 <button type="button" value="2" id="submit-2" disabled>Passer à l'étape suivante</button>
             </fieldset>
 
-            <fieldset id="step-3" class="participation__content__form__div participation__content__form__details">
+            <fieldset id="step-3" class="participation__content__form__div participation__content__form__details" style="display: none;">
                 <header>
                     <h2>Informations Principales</h2>
                     <p>Veuillez renseigner les informations principales du produit dont vous souhaitez faire don</p>
