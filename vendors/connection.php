@@ -88,4 +88,11 @@ class Connection
         }
         return $tableData;
     }
+
+    public function getFilterTitlesByID($filterTable, $filterId){
+        $query = 'SELECT title FROM '.$filterTable.' WHERE id='.$filterId;
+        $tableData = $this->pdo->prepare($query);
+        $tableData->execute();
+        return $tableData->fetch(PDO::FETCH_ASSOC);
+    }
 }

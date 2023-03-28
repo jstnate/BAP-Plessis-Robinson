@@ -62,47 +62,57 @@ if ($_POST) {
     <title>Document</title>
 </head>
 <body>
-<form method="post">
-    <input type="text" name="query"><br><br>
 
-    <div class="sidenav">
-        <div class="filters">
-            <?php
-            foreach ($allFilters as $filter) {
-                $filterValues = $connection->getSorting($filter);
-                echo '<div><h4>'.$filter.'</h4>';
-                foreach($filterValues as $index){
-                    echo '<p><input type="checkbox" name="'.str_replace(' ','_',$index['title']).'">'.$index['title'].'</p>';
+<div>
+    <div class="navbar">
+        <p>navbar</p>
+    </div>
+
+    <div class="main-content">
+        <div class="sidenav">
+            <form method="post">
+                <div class="filters">
+                    <?php
+                    foreach ($allFilters as $filter) {
+                        $filterValues = $connection->getSorting($filter);
+                        echo '<h4>'.$filter.'</h4>';
+                        foreach($filterValues as $index){
+                            echo '<p><input type="checkbox" name="'.$index['title'].'")>'.$index['title'].'</p>';
+                        }
+                    }
+                    ?>
+                    <h4>Order by Name</h4>
+                    <p><input type="radio" name="order_name" value="DESC">DESC</p>
+                    <p><input type="radio" name="order_name" value="ASC">ASC</p>
+                    <p><input type="radio" name="order_name" value="" checked>None</p>
+                    <h4>Order by Date</h4>
+                    <p><input type="radio" name="order_date" value="DESC">DESC</p>
+                    <p><input type="radio" name="order_date" value="ASC">ASC</p>
+                    <p><input type="radio" name="order_date" value="" checked>None</p>
+                    <input type="submit" value="Search" style="display:none">
+                </div>
+            </form>
+        </div>
+
+        <div class="products">
+            <div class="searchbar">
+                <form method="post">
+                    <input type="text" name="query" placeholder="nom" style="outline: none">
+                    <input type="submit" value="Chercher">
+                </form>
+            </div><br>
+            <div class="products-content">
+                <?php
+                foreach ($datas as $data){
+                    echo '<div>'.$data['title'].' - '.$connection->getFilterTitlesByID('categories',$data['categories'])['title'].' - '.$connection->getFilterTitlesByID('states',$data['states'])['title'].' - '.$connection->getFilterTitlesByID('sizes',$data['sizes'])['title'].' - '.$data['publication'].'</div>';
                 }
-                echo '</div>';
-            }
-            ?>
-        </div>
-        <div class="sorting">
-            <div>
-                <h4>Name</h4>
-                <p><input type="radio" name="order_name" value="DESC">DESC</p>
-                <p><input type="radio" name="order_name" value="ASC">ASC</p>
-                <p><input type="radio" name="order_name" value="" checked>None</p>
+                ?>
             </div>
-            <div>
-                <h4>Date</h4>
-                <p><input type="radio" name="order_date" value="DESC">DESC</p>
-                <p><input type="radio" name="order_date" value="ASC">ASC</p>
-                <p><input type="radio" name="order_date" value="" checked>None</p>
-            </div>
-        </div>
-<!--        <input type="submit" value="Search">-->
-    </div>
-    <div class="main">
-        <?php
-        foreach ($datas as $data){
-            echo $data['owner_email'].' - '.$data['title'].' - '.$data['description'].' - '.$data['categories'].' - '.$data['colors'].' - '.$data['matters'].' - '.$data['states'].' - '.$data['sizes'].' - '.$data['publication'].'<br>';
-        }
-        ?>
-    </div>
 
-</form>
+        </div>
+    </div>
+</div>
+
 
 </body>
 </html>

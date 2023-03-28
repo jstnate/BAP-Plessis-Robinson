@@ -1,3 +1,7 @@
+:root {
+  --navbar: 75px;
+}
+
 body, html {
   margin: 0;
   padding: 0;
@@ -6,26 +10,38 @@ body, html {
   font-family: "Poppins", sans-serif;
 }
 
+.navbar {
+  z-index: 1;
+  top: 0;
+  width: 100%;
+  height: var(--navbar);
+  position: fixed;
+  background-color: #E7F1FA;
+  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.3);
+}
+
+.main-content {
+  display: flex;
+  margin-top: var(--navbar);
+}
+
 .sidenav {
   height: 100%;
-  width: 260px;
-  position: fixed;
+  min-width: 260px;
   text-align: left;
-  z-index: 1;
   top: 0;
   left: 0;
   background-color: #E7F1FA;
-  overflow-x: hidden;
-  font-size: 14px;
+  font-size: 16px;
 }
 .sidenav div {
   margin: 0 0 0 20%;
 }
 .sidenav p {
-  margin: 0;
+  margin: 0 0 0 1rem;
 }
 .sidenav h4 {
-  margin: 1rem 0 0 0;
+  margin: 1.5rem 0 0.2rem 0;
 }
 
 .sorting {
@@ -34,8 +50,24 @@ body, html {
   white-space: nowrap;
 }
 
-.main {
-  margin-left: 260px;
+.searchbar {
+  border: 1px solid #000;
+  display: inline-block;
+  border-radius: 20px;
+}
+.searchbar input {
+  background-color: transparent;
+  border: 0;
+}
+
+.products {
+  margin: 0 auto 0 auto;
+}
+
+.products-content {
+  gap: 15px;
+  display: grid;
+  grid-template-columns: repeat(4, 300px);
 }
 
 /*# sourceMappingURL=build.css.map */
