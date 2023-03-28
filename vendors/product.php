@@ -95,12 +95,10 @@ if ($_POST) {
                     <p><input type="radio" name="order_date" value="" <?php if(isset($_GET['orderD']) && $_GET['orderD'] === '') echo 'checked'; ?> >None</p>
                     <input type="submit" value="Search" style="display:none">
                 </div>
-            </form>
         </div>
 
         <div class="products">
             <div class="searchbar">
-                <form method="post">
                     <input type="text" name="query" placeholder="nom" style="outline: none;width: 100%" value="<?php if(isset($_GET['query'])) echo $_GET['query'] ?>">
                     <input type="submit" value="Chercher">
                 </form>
