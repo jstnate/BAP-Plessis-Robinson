@@ -26,7 +26,7 @@ array_push($sortings, (isset($_GET['orderN'])) ? ($_GET['orderN']) : (null));
 array_push($sortings, (isset($_GET['orderD'])) ? ($_GET['orderD']) : (null));
 
 //var_dump($globalFilterArray);
-$datas = $connection->getData($globalFilterArray, (isset($_GET['query'])) ? ($_GET['query']) : (null), $sortings);
+$datas = $connection->getData($globalFilterArray, (isset($_GET['query'])) ? ($_GET['query']) : (null), $sortings, (isset($_GET['page'])) ? ($_GET['page']) : (null));
 
 if ($_POST) {
     $parameters = '';
@@ -47,7 +47,7 @@ if ($_POST) {
         }
     }
 //        echo $parameters;
-    header('Location: product.php' . $parameters . '&query=' . $_POST['query'] . '&orderN=' . $_POST['order_name'] . '&orderD=' . $_POST['order_date']);
+    header('Location: product.php'.$parameters.'&query='.$_POST['query'].'&orderN='.$_POST['order_name'].'&orderD='.$_POST['order_date'].'&page='.$_POST['page']);
 }
 
 ?>
@@ -76,7 +76,7 @@ if ($_POST) {
                         $filterValues = $connection->getSorting($filter);
                         echo '<h4>'.$filter.'</h4>';
                         foreach($filterValues as $index){
-                            if(str_contains($_GET["$filter"],$index['id'])){
+                            if(isset($_GET["$filter"]) && str_contains($_GET["$filter"],$index['id'])){
                                 $persistent = ' checked';
                             }else{
                                 $persistent = null;
@@ -86,13 +86,13 @@ if ($_POST) {
                     }
                     ?>
                     <h4>Order by Name</h4>
-                    <p><input type="radio" name="order_name" value="DESC" <?php if($_GET['orderN'] === 'DESC') echo 'checked'; ?> >DESC</p>
-                    <p><input type="radio" name="order_name" value="ASC" <?php if($_GET['orderN'] === 'ASC') echo 'checked'; ?> >ASC</p>
-                    <p><input type="radio" name="order_name" value="" <?php if($_GET['orderN'] === '') echo 'checked'; ?> >None</p>
+                    <p><input type="radio" name="order_name" value="DESC" <?php if(isset($_GET['orderN']) && $_GET['orderN'] === 'DESC') echo 'checked'; ?> >DESC</p>
+                    <p><input type="radio" name="order_name" value="ASC" <?php if(isset($_GET['orderN']) && $_GET['orderN'] === 'ASC') echo 'checked'; ?> >ASC</p>
+                    <p><input type="radio" name="order_name" value="" <?php if(isset($_GET['orderN']) && $_GET['orderN'] === '') echo 'checked'; ?> >None</p>
                     <h4>Order by Date</h4>
-                    <p><input type="radio" name="order_date" value="DESC" <?php if($_GET['orderD'] === 'DESC') echo 'checked'; ?> >DESC</p>
-                    <p><input type="radio" name="order_date" value="ASC" <?php if($_GET['orderD'] === 'ASC') echo 'checked'; ?> >ASC</p>
-                    <p><input type="radio" name="order_date" value="" <?php if($_GET['orderD'] === '') echo 'checked'; ?> >None</p>
+                    <p><input type="radio" name="order_date" value="DESC" <?php if(isset($_GET['orderD']) && $_GET['orderD'] === 'DESC') echo 'checked'; ?> >DESC</p>
+                    <p><input type="radio" name="order_date" value="ASC" <?php if(isset($_GET['orderD']) && $_GET['orderD'] === 'ASC') echo 'checked'; ?> >ASC</p>
+                    <p><input type="radio" name="order_date" value="" <?php if(isset($_GET['orderD']) && $_GET['orderD'] === '') echo 'checked'; ?> >None</p>
                     <input type="submit" value="Search" style="display:none">
                 </div>
             </form>
@@ -101,7 +101,7 @@ if ($_POST) {
         <div class="products">
             <div class="searchbar">
                 <form method="post">
-                    <input type="text" name="query" placeholder="nom" style="outline: none;width: 100%" value="<?php echo $_GET['query'] ?>">
+                    <input type="text" name="query" placeholder="nom" style="outline: none;width: 100%" value="<?php if(isset($_GET['query'])) echo $_GET['query'] ?>">
                     <input type="submit" value="Chercher">
                 </form>
             </div><br>
@@ -113,7 +113,6 @@ if ($_POST) {
                 }
                 ?>
             </div>
-
         </div>
     </div>
 </div>
