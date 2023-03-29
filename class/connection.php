@@ -6,7 +6,7 @@ Class Connection
     private PDO $pdo;
     public function __construct()
     {
-        $this->pdo = new PDO('mysql:dbname=db_plessis-robinson;host=127.0.0.1', 'root', '');
+        $this->pdo = new PDO('mysql:dbname=db_plessis-robinson;host=127.0.0.1', 'root', 'root');
     }
 
 //    ============== GET =================

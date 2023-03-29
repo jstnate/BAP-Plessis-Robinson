@@ -63,6 +63,8 @@
 </head>
 <body class="participation">
 
+    <?php include 'public/layouts/_header.php'; ?>
+
     <main class="participation__content">
         <aside class="participation__content__banner">
             <h1>
@@ -74,7 +76,7 @@
         </aside>
         <form class="participation__content__form" method="POST" enctype="multipart/form-data" <?php if (isset($insert) && $insert) echo 'style="display: none;"' ?> >
             <fieldset id="step-1" class="participation__content__form__div participation__content__form__owner" style="display: flex;">
-                <header>
+                <header class="participation__content__form__div__header">
                     <h2>Vos coordonnées</h2>
                     <p>Veuillez renseigner cos coordonnées pour que les potentiels intéressés puisses vous contacter</p>
                 </header>
@@ -105,7 +107,7 @@
             </fieldset>
 
             <fieldset id="step-2" class="participation__content__form__div participation__content__form__products" style="display: none;">
-                <header>
+                <header class="participation__content__form__div__header">
                     <h2>Informations Principales</h2>
                     <p>Veuillez renseigner les informations principales du produit dont vous souhaitez faire don</p>
                 </header>
@@ -125,7 +127,7 @@
             </fieldset>
 
             <fieldset id="step-3" class="participation__content__form__div participation__content__form__details" style="display: none;">
-                <header>
+                <header class="participation__content__form__div__header">
                     <h2>Informations Principales</h2>
                     <p>Veuillez renseigner les informations principales du produit dont vous souhaitez faire don</p>
                 </header>
@@ -233,6 +235,8 @@
             </section>
         <?php } ?> 
     </main>
+
+    <?php include 'public/layouts/_footer.php'; ?>
 
 </body>
 </html>
