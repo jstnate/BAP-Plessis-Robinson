@@ -42,10 +42,9 @@
             $temporary = 'images/uploads/products/';
             move_uploaded_file($tmp_img_name,$temporary.$img_name);
         }
-    
+        
         $insert = $connection->insertProduct($product);
-
-        echo $insert == true  ? 'Ajouté' :  'Erreur';
+        
     endif;
 // ==================== END INSERT =================
 ?>
@@ -59,81 +58,181 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="public/js/forms.js" defer></script>
     <link rel="stylesheet" href="public/css/style.css">
+    <script src="https://kit.fontawesome.com/b050931f68.js" crossorigin="anonymous"></script>
     <title>Participer aux dons</title>
 </head>
-<body>
-    <form method="POST" enctype="multipart/form-data">
-        <div id="step-1" class="owner-infos">
-            <label for="lastname">Nom</label>
-                <input type="text" name="lastname" id="lastname" placeholder="Nom">
-            <label for="firstname">Prénom</label>
-                <input type="text" name="firstname" id="firstname" placeholder="Prénom">
-            <label for="email">Email</label>
-                <input type="email" name="email" id="email" placeholder="Email" required>
-            <label for="phone">Téléphone</label>
-                <input type="tel" name="phone" id="phone" placeholder="Téléphone">
+<body class="participation">
 
-            <button type="button" value="1" id="step">Passer à l'étape suivante</button>
-        </div>
+    <main class="participation__content">
+        <aside class="participation__content__banner">
+            <h1>
+                Faîtes le bon geste !
+            </h1>
+            <p>
+                Remplissez les champs requis pour effectuer votre don
+            </p>
+        </aside>
+        <form class="participation__content__form" method="POST" enctype="multipart/form-data" <?php if (isset($insert) && $insert) echo 'style="display: none;"' ?> >
+            <fieldset id="step-1" class="participation__content__form__div participation__content__form__owner" style="display: flex;">
+                <header>
+                    <h2>Vos coordonnées</h2>
+                    <p>Veuillez renseigner cos coordonnées pour que les potentiels intéressés puisses vous contacter</p>
+                </header>
 
-        <div id="step-2" class="product-infos" style="display: none">
-            <label for="title">Titre du produit</label>
-                <input type="text" name="title" id="title" placeholder="Titre du produit"  required>
-            <label for="description">Description du produit</label>
-                <textarea name="description" id="description" cols="30" required></textarea>
-            <label for="front">Image de Face</label>
-                <input type="file" name="front_pic" id="front" accept="image/png, image/jpeg, image/jpg">
-            <label for="back">Image de Dos</label>
-                <input type="file" name="back_pic" id="back" accept="image/png, image/jpeg">
-            <label for="side">Image de Coté</label>
-                <input type="file" name="side_pic" id="side" accept="image/png, image/jpeg">
+                <section>
+                    <div class="civil">
+                        <div>
+                            <label for="lastname">Nom</label>
+                            <input type="text" name="lastname" id="lastname">
+                        </div>
+                        <div>
+                            <label for="firstname">Prénom</label>
+                            <input type="text" name="firstname" id="firstname">
+                        </div>
+                    </div>
 
-            <button type="button" value="2" id="step">Passer à l'étape suivante</button>
-        </div>
+                    <div>
+                        <label for="email">Email*</label>
+                        <input type="email" name="email" class="required-1" required>
+                    </div>
+                    <div>
+                        <label for="phone">Téléphone*</label>
+                        <input type="tel" name="phone" class="required-1" required>
+                    </div>
+                </section>
 
-        <div id="step-3" class="product-details" style="display: none">
-            <select name="category" required>
-                <?php
-                foreach ($categories as $category) : ?>
-                    <option value="<?= $category['id'] ?>"><?= $category['title'] ?></option>
-                <?php endforeach;
-                ?>
-            </select>
+                <button type="button" value="1" id="submit-1" disabled>Passer à l'étape suivante</button>
+            </fieldset>
 
-            <label for="brand">Marque</label>
-                <input type="text" name="brand" id="marque" placeholder="Marque">
+            <fieldset id="step-2" class="participation__content__form__div participation__content__form__products" style="display: none;">
+                <header>
+                    <h2>Informations Principales</h2>
+                    <p>Veuillez renseigner les informations principales du produit dont vous souhaitez faire don</p>
+                </header>
 
-            <select name="color" required>
-                <?php
-                    foreach ($colors as $color) : ?>
-                        <option value="<?= $color['id'] ?>"><?= $color['title'] ?></option>
-                    <?php endforeach;
-                ?>
-            </select>
-            <select name="matter">
-                <?php
-                foreach ($matters as $matter) : ?>
-                    <option value="<?= $matter['id'] ?>"><?= $matter['title'] ?></option>
-                <?php endforeach;
-                ?>
-            </select>
-            <select name="state" required>
-                <?php
-                foreach ($states as $state) : ?>
-                    <option value="<?= $state['id'] ?>"><?= $state['title'] ?></option>
-                <?php endforeach;
-                ?>
-            </select>
-            <select name="size" required>
-                <?php
-                foreach ($sizes as $size) : ?>
-                    <option value="<?= $size['id'] ?>"><?= $size['title'] ?></option>
-                <?php endforeach;
-                ?>
-            </select>
+                <section>
+                    <div>
+                        <label for="title">Titre du produit*</label>
+                        <input type="text" name="title" class="required-2" id="title" required>
+                    </div>
+                    <div class="textarea">
+                        <label for="description">Description du produit*</label>
+                        <textarea name="description" class="required-2" id="description" cols="30" required></textarea>
+                    </div>
+                </section>
 
-            <button type="submit">Effectuer mon don !</button>
-        </div>
-    </form>
+                <button type="button" value="2" id="submit-2" disabled>Passer à l'étape suivante</button>
+            </fieldset>
+
+            <fieldset id="step-3" class="participation__content__form__div participation__content__form__details" style="display: none;">
+                <header>
+                    <h2>Informations Principales</h2>
+                    <p>Veuillez renseigner les informations principales du produit dont vous souhaitez faire don</p>
+                </header>
+                <section>
+                    <div>
+                        <div>
+                            <label for="category">Catégorie*</label>
+                            <select name="category" class="required-3" id="category" required>
+                                <?php
+                                foreach ($categories as $category) : ?>
+                                    <option value="<?= $category['id'] ?>"><?= $category['title'] ?></option>
+                                <?php endforeach;
+                                ?>
+                            </select>
+                        </div>
+                        <div>
+                            <label for="brand">Marque</label>
+                            <input type="text" name="brand" id="brand">
+                        </div>
+
+                    </div>
+
+                    <div>
+                        <div>
+                            <label for="color">Couleur*</label>
+                            <select name="color" class="required-3" id="color" required>
+                                <?php
+                                    foreach ($colors as $color) : ?>
+                                        <option value="<?= $color['id'] ?>"><?= $color['title'] ?></option>
+                                    <?php endforeach;
+                                ?>
+                            </select>
+                        </div>
+                        <div>
+                            <label for="matter">Matière*</label>
+                            <select name="matter" id="matter">
+                                <?php
+                                foreach ($matters as $matter) : ?>
+                                    <option value="<?= $matter['id'] ?>"><?= $matter['title'] ?></option>
+                                <?php endforeach;
+                                ?>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div>
+                        <div>
+                            <label for="state">Etat*</label>
+                            <select name="state" class="required-3" id="state" required>
+                                <?php
+                                foreach ($states as $state) : ?>
+                                    <option value="<?= $state['id'] ?>"><?= $state['title'] ?></option>
+                                <?php endforeach;
+                                ?>
+                            </select>
+                        </div>
+                        <div>
+                            <label for="size">Taille*</label>
+                            <select name="size" class="required-3" id="size" required>
+                                <?php
+                                    foreach ($sizes as $size) : ?>
+                                        <option value="<?= $size['id'] ?>"><?= $size['title'] ?></option>
+                                    <?php endforeach;
+                                ?>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="dropbox">
+                        <label class="file-drop-zone" id="front-dropbox" for="front">
+                            <h3>Photo de face*</h3>
+                            <i class="fa-solid fa-file-arrow-down"></i>
+                            <span class="file-name" id="front-file-name"></span>
+                            <span class="file-message">.jpg, .png, .jpeg</span>
+                        </label>
+                        <input type="file" name="front_pic" id="front" class="required-3" accept="image/png, image/jpeg, image/jpg" required>
+
+                        <label class="file-drop-zone" id="back-dropbox" for="back">
+                            <h3>Photo de profil*</h3>
+                            <i class="fa-solid fa-file-arrow-down"></i>
+                            <span class="file-name" id="back-file-name"></span>
+                            <span class="file-message">.jpg, .png, .jpeg</span>
+                        </label>
+                        <input type="file" name="back_pic" id="back" class="required-3" accept="image/png, image/jpeg, image/jpg" required>
+
+
+                        <label class="file-drop-zone" id="side-dropbox" for="side">
+                            <h3>Photo de dos*</h3>
+                            <i class="fa-solid fa-file-arrow-down"></i>
+                            <span class="file-name" id="side-file-name"></span>
+                            <span class="file-message">.jpg, .png, .jpeg</span>
+                        </label>
+                        <input type="file" name="side_pic" id="side" class="required-3" accept="image/png, image/jpeg, image/jpg" required>
+                    </div>
+                </section>
+
+                <button type="submit" id="submit-3" disabled>Effectuer mon don !</button>
+            </fieldset>
+        </form>
+        <?php if (isset($insert) && $insert) { ?>
+            <section class="participation__content__results">
+                <h2>Votre don à bien était enregistré</h2>
+                <p>Les autres utilisateurs peuvent désormais le voir sur la page des objets donnés</p>
+                <a href="participation.php">Effectuer un autre don</a>
+            </section>
+        <?php } ?> 
+    </main>
+
 </body>
 </html>
