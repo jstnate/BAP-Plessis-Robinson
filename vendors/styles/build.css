@@ -53,9 +53,9 @@ body, html {
   border: 1px solid #000;
   display: flex;
   border-radius: 20px;
-  width: 100%;
+  width: 95%;
   height: 40px;
-  margin: 2rem 0 2rem 0;
+  margin: 2rem auto 2rem auto;
   align-items: center;
   justify-content: center;
 }
@@ -72,12 +72,23 @@ body, html {
 
 .products {
   margin: 0 auto 0 auto;
+  width: 70vw;
 }
 
 .products-content {
   gap: 15px;
   display: grid;
-  grid-template-columns: repeat(4, 300px);
+  width: 100%;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  place-items: center;
+}
+.products-content img {
+  width: 280px;
+}
+.products-content div {
+  display: flex;
+  flex-direction: column;
+  width: 280px;
 }
 
 /*# sourceMappingURL=build.css.map */

@@ -32,6 +32,7 @@ if ($_POST) {
     $parameters = '';
     $argsI = 0;
     $argsV = 0;
+    $pages = $_GET['page'];
     foreach ($allFilters as $filter) {
         $filterValues = $connection->getSorting($filter);
         if ($argsI == 0) {
@@ -46,8 +47,16 @@ if ($_POST) {
             }
         }
     }
+    if($_POST['next']){
+        $pages++;
+    }
+    if($_POST['prev']){
+        if($pages > 1){
+            $pages--;
+        }
+    }
 //        echo $parameters;
-    header('Location: product.php'.$parameters.'&query='.$_POST['query'].'&orderN='.$_POST['order_name'].'&orderD='.$_POST['order_date'].'&page='.$_POST['page']);
+    header('Location: product.php'.$parameters.'&query='.$_POST['query'].'&orderN='.$_POST['order_name'].'&orderD='.$_POST['order_date'].'&page='.$pages);
 }
 
 ?>
@@ -64,14 +73,16 @@ if ($_POST) {
 <body>
 
 <div>
-    <div class="navbar">
-        <p>navbar</p>
-    </div>
+<!--    <div class="navbar">-->
+<!--        <p>navbar</p>-->
+<!--    </div>-->
     <div class="main-content">
         <div class="sidenav">
             <form method="post">
                 <div class="filters">
                     <?php
+//                    $actual_link = "https://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
+//                    echo $actual_link;
                     foreach ($allFilters as $filter) {
                         $filterValues = $connection->getSorting($filter);
                         echo '<h4>'.$filter.'</h4>';
@@ -93,7 +104,7 @@ if ($_POST) {
                     <p><input type="radio" name="order_date" value="DESC" <?php if(isset($_GET['orderD']) && $_GET['orderD'] === 'DESC') echo 'checked'; ?> >DESC</p>
                     <p><input type="radio" name="order_date" value="ASC" <?php if(isset($_GET['orderD']) && $_GET['orderD'] === 'ASC') echo 'checked'; ?> >ASC</p>
                     <p><input type="radio" name="order_date" value="" <?php if(isset($_GET['orderD']) && $_GET['orderD'] === '') echo 'checked'; ?> >None</p>
-                    <input type="submit" value="Search" style="display:none">
+<!--                    <input type="submit" value="Search" style="display:none">-->
                 </div>
         </div>
 
@@ -101,15 +112,19 @@ if ($_POST) {
             <div class="searchbar">
                     <input type="text" name="query" placeholder="nom" style="outline: none;width: 100%" value="<?php if(isset($_GET['query'])) echo $_GET['query'] ?>">
                     <input type="submit" value="Chercher">
-                </form>
             </div><br>
             <div class="products-content">
                 <?php
                 foreach ($datas as $data){
-                    echo '<div><img src="../images/placeholder-image.jpg" alt="placeholder" width="300px">';
+                    echo '<div><img src="../images/placeholder-image.jpg" alt="placeholder">';
                     echo $data['title'].' - '.$connection->getFilterTitlesByID('categories',$data['categories'])['title'].' - '.$connection->getFilterTitlesByID('states',$data['states'])['title'].' - '.$connection->getFilterTitlesByID('sizes',$data['sizes'])['title'].' - '.$data['publication'].'</div>';
                 }
                 ?>
+            </div>
+            <div>
+                <input type="submit" name="prev" value="prev">
+                <input type="submit" name="next" value="next">
+                </form>
             </div>
         </div>
     </div>
