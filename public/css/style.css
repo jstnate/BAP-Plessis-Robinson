@@ -25,6 +25,7 @@
   align-items: center;
   transition: 0.5s;
   z-index: 3000;
+  box-shadow: 0 8px 16px -8px rgba(0, 0, 0, 0.1);
 }
 .main_header .logo img {
   width: 150px;
