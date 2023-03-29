@@ -2,6 +2,7 @@
 require_once 'class/connection.php';
 
 $connection = new Connection();
+
 //$data = $connection->getData(
 //    (isset($_GET['cat'])) ? ($_GET['cat']) : (null),
 //    (isset($_GET['col'])) ? ($_GET['col']) : (null),
@@ -25,8 +26,9 @@ foreach ($allFilters as $filter){
 array_push($sortings, (isset($_GET['orderN'])) ? ($_GET['orderN']) : (null));
 array_push($sortings, (isset($_GET['orderD'])) ? ($_GET['orderD']) : (null));
 
-var_dump($globalFilterArray);
-var_dump($connection->getData($globalFilterArray, (isset($_GET['query'])) ? ($_GET['query']) : (null), $sortings));
+$products = $connection->getData($globalFilterArray, null, $sortings);
+// var_dump($globalFilterArray);
+// var_dump($connection->getData($globalFilterArray, (isset($_GET['query'])) ? ($_GET['query']) : (null), $sortings));
 
 if ($_POST) {
     $parameters = '';
@@ -78,5 +80,32 @@ if ($_POST) {
     <input type="submit" value="Search">
 </form>
 
+
+
+<?php 
+
+foreach ($products as $product) :
+    $category = $connection->getCategory($product['id']);
+    $state = $connection->getState($product['id']);
+    $size = $connection->getSize($product['id']);
+?>
+    <a href="page_produit.php?id=<?= $product['id'] ?>">
+        <img src="images/uploads//products/<?= $product['front_pic'] ?>" alt="front pic">
+    </a>
+    <!-- <div class="image_slider">
+        <img src="<?= $product['front'] ?>" alt="front pis">
+        <img src="<?= $product['back_pic'] ?>" alt="back pic">
+        <img src="<?= $product['side_pic'] ?>" alt="side pic">
+    </div> -->
+    <h2><?= $product['title'] ?></h2>
+    <p><?= date("d/m/Y", strtotime($product['publication'])) ?></p>
+    <p><?= $category['title'] ?></p>
+    <p><?= $state['title'] ?></p>
+    <p><?= $size['title'] ?></p> 
+
+<?php endforeach;
+?>
+
+    
 </body>
 </html>
