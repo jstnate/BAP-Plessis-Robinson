@@ -33,6 +33,18 @@ if($_GET['page'] > round(count($datas)/20, 0, PHP_ROUND_HALF_UP)){
     header('Location: product.php?categories='.$_GET['categories'].'&colors='.$_GET['colors'].'&matters='.$_GET['matters'].'&states='.$_GET['states'].'&sizes='.$_GET['sizes'].'&query='.$_GET['query'].'&orderN='.$_GET['order_name'].'&orderD='.$_GET['order_date'].'&page='.$pages);
 }
 
+if($_GET['page'] == round(count($datas)/20, 0, PHP_ROUND_HALF_UP)){
+    $displayNextButton = 0;
+}else{
+    $displayNextButton = 1;
+}
+
+if($_GET['page'] <= 1){
+    $displayPrevButton = 0;
+}else{
+    $displayPrevButton = 1;
+}
+
 if ($_POST) {
     $parameters = '';
     $argsI = 0;
@@ -143,8 +155,10 @@ if ($_POST) {
                 ?>
             </div>
             <div>
-                <input type="submit" name="prev" value="prev">
-                <input type="submit" name="next" value="next">
+                <?php
+                if($displayPrevButton == 1) echo '<input type="submit" name="prev" value="prev">';
+                if($displayNextButton == 1) echo '<input type="submit" name="next" value="next">';
+                ?>
                 </form>
             </div>
         </div>
