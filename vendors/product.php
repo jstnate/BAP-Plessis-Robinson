@@ -26,7 +26,7 @@ array_push($sortings, (isset($_GET['orderN'])) ? ($_GET['orderN']) : (null));
 array_push($sortings, (isset($_GET['orderD'])) ? ($_GET['orderD']) : (null));
 
 //var_dump($globalFilterArray);
-$datas = $connection->getData($globalFilterArray, (isset($_GET['query'])) ? ($_GET['query']) : (null), $sortings, (isset($_GET['page'])) ? ($_GET['page']) : (null));
+$datas = $connection->getData($globalFilterArray, (isset($_GET['query'])) ? ($_GET['query']) : (null), $sortings, (isset($_GET['page'])) ? ($_GET['page']) : (null), 1);
 
 if ($_POST) {
     $parameters = '';
@@ -50,11 +50,14 @@ if ($_POST) {
     if($_POST['next']){
         $pages++;
     }
-    if($_POST['prev']){
+    else if($_POST['prev']){
         if($pages > 1){
             $pages--;
         }
+    }else{
+        $pages = 1;
     }
+
 //        echo $parameters;
     header('Location: product.php'.$parameters.'&query='.$_POST['query'].'&orderN='.$_POST['order_name'].'&orderD='.$_POST['order_date'].'&page='.$pages);
 }
