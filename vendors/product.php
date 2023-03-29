@@ -26,7 +26,7 @@ array_push($sortings, (isset($_GET['orderN'])) ? ($_GET['orderN']) : (null));
 array_push($sortings, (isset($_GET['orderD'])) ? ($_GET['orderD']) : (null));
 
 //var_dump($globalFilterArray);
-$datas = $connection->getData($globalFilterArray, (isset($_GET['query'])) ? ($_GET['query']) : (null), $sortings, (isset($_GET['page'])) ? ($_GET['page']) : (null), 1);
+$datas = $connection->getData($globalFilterArray, (isset($_GET['query'])) ? ($_GET['query']) : (null), $sortings, (isset($_GET['page'])) ? ($_GET['page']) : (null));
 
 if ($_POST) {
     $parameters = '';
@@ -47,6 +47,7 @@ if ($_POST) {
             }
         }
     }
+
     if($_POST['next']){
         $pages++;
     }
@@ -76,9 +77,9 @@ if ($_POST) {
 <body>
 
 <div>
-<!--    <div class="navbar">-->
-<!--        <p>navbar</p>-->
-<!--    </div>-->
+    <div class="navbar">
+        <p>navbar</p>
+    </div>
     <div class="main-content">
         <div class="sidenav">
             <form method="post">

@@ -9,7 +9,7 @@ class Connection
         $this->pdo = new PDO('mysql:dbname=bap2;host=127.0.0.1', 'root', '');
     }
 
-    public function getData($filtersArrays, $queryTitle, $sortingsArray, $page, $returnType){
+    public function getData($filtersArrays, $queryTitle, $sortingsArray, $page){
         $query = 'SELECT * FROM `products`';
         $allFilters = $this->getAllFilters();
         $isFirstAnd = 0;
@@ -71,16 +71,10 @@ class Connection
 
         $query .= ' LIMIT '.$startingIndex.',20 ';
 
-        if($returnType == 0){
-            return $query;
-        }
-        else if($returnType == 1){
-            $productData = $this->pdo->prepare($query);
-            $productData->execute();
-            return $productData->fetchAll(PDO::FETCH_ASSOC);
-        }else{
-            return 'incorrect return parameter';
-        }
+        $productData = $this->pdo->prepare($query);
+        $productData->execute();
+        return $productData->fetchAll(PDO::FETCH_ASSOC);
+//        return $query;
     }
 
     public function getSorting($filterTable){
