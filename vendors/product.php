@@ -26,7 +26,12 @@ array_push($sortings, (isset($_GET['orderN'])) ? ($_GET['orderN']) : (null));
 array_push($sortings, (isset($_GET['orderD'])) ? ($_GET['orderD']) : (null));
 
 //var_dump($globalFilterArray);
-$datas = $connection->getData($globalFilterArray, (isset($_GET['query'])) ? ($_GET['query']) : (null), $sortings, (isset($_GET['page'])) ? ($_GET['page']) : (null));
+$datas = $connection->getData($globalFilterArray, (isset($_GET['query'])) ? ($_GET['query']) : (null), $sortings);
+
+if($_GET['page'] > round(count($datas)/20, 0, PHP_ROUND_HALF_UP)){
+    $pages = round(count($datas)/20, 0, PHP_ROUND_HALF_UP);
+    header('Location: product.php?categories='.$_GET['categories'].'&colors='.$_GET['colors'].'&matters='.$_GET['matters'].'&states='.$_GET['states'].'&sizes='.$_GET['sizes'].'&query='.$_GET['query'].'&orderN='.$_GET['order_name'].'&orderD='.$_GET['order_date'].'&page='.$pages);
+}
 
 if ($_POST) {
     $parameters = '';
@@ -49,7 +54,9 @@ if ($_POST) {
     }
 
     if($_POST['next']){
-        $pages++;
+        if($_GET['page'] < round(count($datas)/20, 0, PHP_ROUND_HALF_UP)){
+            $pages++;
+        }
     }
     else if($_POST['prev']){
         if($pages > 1){
@@ -114,14 +121,24 @@ if ($_POST) {
 
         <div class="products">
             <div class="searchbar">
-                    <input type="text" name="query" placeholder="nom" style="outline: none;width: 100%" value="<?php if(isset($_GET['query'])) echo $_GET['query'] ?>">
+                    <input type="text" name="query" placeholder="Recherche" style="outline: none;width: 100%" value="<?php if(isset($_GET['query'])) echo $_GET['query'] ?>">
                     <input type="submit" value="Chercher">
             </div><br>
             <div class="products-content">
                 <?php
-                foreach ($datas as $data){
+                if(intval($_GET['page']) > 0){
+                    $startingIndex = ($_GET['page'] - 1) * 20;
+                }else{
+                    $startingIndex = 0;
+                }
+
+                for ($i = 0; $i < 20; $i++){
+                    $increment = $i+$startingIndex;
+                    if($increment >= count($datas)){
+                        break;
+                    }
                     echo '<div><img src="../images/placeholder-image.jpg" alt="placeholder">';
-                    echo $data['title'].' - '.$connection->getFilterTitlesByID('categories',$data['categories'])['title'].' - '.$connection->getFilterTitlesByID('states',$data['states'])['title'].' - '.$connection->getFilterTitlesByID('sizes',$data['sizes'])['title'].' - '.$data['publication'].'</div>';
+                    echo $datas[$increment]['title'].' - '.$connection->getFilterTitlesByID('categories',$datas[$increment]['categories'])['title'].' - '.$connection->getFilterTitlesByID('states',$datas[$increment]['states'])['title'].' - '.$connection->getFilterTitlesByID('sizes',$datas[$increment]['sizes'])['title'].' - '.$datas[$increment]['publication'].'</div>';
                 }
                 ?>
             </div>

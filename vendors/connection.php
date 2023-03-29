@@ -9,17 +9,11 @@ class Connection
         $this->pdo = new PDO('mysql:dbname=bap2;host=127.0.0.1', 'root', '');
     }
 
-    public function getData($filtersArrays, $queryTitle, $sortingsArray, $page){
+    public function getData($filtersArrays, $queryTitle, $sortingsArray){
         $query = 'SELECT * FROM `products`';
         $allFilters = $this->getAllFilters();
         $isFirstAnd = 0;
         $isFirstSorted = 0;
-
-        if(intval($page) > 0){
-            $startingIndex = ($page - 1) * 20;
-        }else{
-            $startingIndex = 0;
-        }
 
         if($filtersArrays != null) {
             $query .= ' WHERE ';
@@ -68,8 +62,6 @@ class Connection
                 $query .= ', publication '.$sortingsArray[1];
             }
         }
-
-        $query .= ' LIMIT '.$startingIndex.',20 ';
 
         $productData = $this->pdo->prepare($query);
         $productData->execute();
