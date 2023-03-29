@@ -9,9 +9,36 @@ $connection = new Connection();
 //    (isset($_GET['ordD'])) ? ($_GET['ordD']) : (null));
 //var_dump($data);
 //echo '<a href="product?cat=&col=&ordN=DESC&ordD=DESC"</a><br>';
+
 $allFilters = $connection->getAllFilters();
+//var_dump($allFilters);
 $globalFilterArray = array();
 $sortings = array();
+$allParameters = array();
+$defaultUrl = 'product.php';
+$isFirstInDefaultUrl = 0;
+
+foreach ($allFilters as $filter){
+    array_push($allParameters, $filter);
+}
+array_push($allParameters,'orderN', 'orderD', 'query', 'page');
+
+foreach ($allParameters as $parameter){
+    if ($isFirstInDefaultUrl == 0) {
+        $defaultUrl .= '?' . $parameter . '=';
+        $isFirstInDefaultUrl++;
+    } else {
+        $defaultUrl .= '&' . $parameter . '=';
+    }
+}
+$defaultUrl .= '1';
+
+foreach ($allParameters as $parameter){
+    if(!isset($_GET["$parameter"])){
+        header('Location:'.$defaultUrl);
+    }
+}
+
 foreach ($allFilters as $filter){
     if(isset($_GET[$filter])){
         if($_GET[$filter] != null){
@@ -29,8 +56,22 @@ array_push($sortings, (isset($_GET['orderD'])) ? ($_GET['orderD']) : (null));
 $datas = $connection->getData($globalFilterArray, (isset($_GET['query'])) ? ($_GET['query']) : (null), $sortings);
 
 if($_GET['page'] > round(count($datas)/20, 0, PHP_ROUND_HALF_UP)){
+    $retrieveUrl = 'product.php';
+    $isFirstInRetrieveUrl = 0;
     $pages = round(count($datas)/20, 0, PHP_ROUND_HALF_UP);
-    header('Location: product.php?categories='.$_GET['categories'].'&colors='.$_GET['colors'].'&matters='.$_GET['matters'].'&states='.$_GET['states'].'&sizes='.$_GET['sizes'].'&query='.$_GET['query'].'&orderN='.$_GET['order_name'].'&orderD='.$_GET['order_date'].'&page='.$pages);
+    foreach ($allParameters as $parameter){
+        if ($isFirstInRetrieveUrl == 0) {
+            $retrieveUrl .= '?' . $parameter . '=' . $_GET["$parameter"];
+            $isFirstInRetrieveUrl++;
+        } else {
+            if($parameter == 'page'){
+                $retrieveUrl .= '&' . $parameter . '=' . $pages;
+            }else{
+                $retrieveUrl .= '&' . $parameter . '=' . $_GET["$parameter"];
+            }
+        }
+    }
+    header('Location: '.$retrieveUrl);
 }
 
 if($_GET['page'] == round(count($datas)/20, 0, PHP_ROUND_HALF_UP)){
@@ -96,9 +137,9 @@ if ($_POST) {
 <body>
 
 <div>
-    <div class="navbar">
-        <p>navbar</p>
-    </div>
+<!--    <div class="navbar">-->
+<!--        <p>navbar</p>-->
+<!--    </div>-->
     <div class="main-content">
         <div class="sidenav">
             <form method="post">
