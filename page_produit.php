@@ -34,7 +34,7 @@ $size = $connection->getSize($product['id']);
 
     <div class="product-page">
     <div class="product-image">
-         <img src="images/uploads/products//<?= $product['front_pic'] ?>" alt="front pic">
+         <img src="images/uploads/products/<?= $product['front_pic'] ?>" alt="front pic">
     </div>
     <div class="product-details">
         <h1 class="product-title"><?= $product['title'] ?></h1>
