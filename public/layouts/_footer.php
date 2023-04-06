@@ -38,9 +38,9 @@
           </div>
           <div class="product">
             <div class="h5">Pages</div>
-            <a href="#">Accueil</a>
-            <a href="#">Faire un don</a>
-            <a href="#">Voir les objets donnés</a>
+            <a href="index.php">Accueil</a>
+            <a href="participation.php">Faire un don</a>
+            <a href="produits.php">Voir les objets donnés</a>
           </div>
         </section>
       </section>
