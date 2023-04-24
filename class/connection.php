@@ -179,7 +179,7 @@ Class Connection
     }
 
     public function getAllFilters(){
-        $query = 'SHOW COLUMNS FROM products';
+        $query = 'SHOW COLUMNS FROM bap2.products';
         $tableData = $this->pdo->prepare($query);
         $tableData->execute();
         $tableData = $tableData->fetchAll(PDO::FETCH_COLUMN, 0);
