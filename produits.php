@@ -190,7 +190,7 @@ if ($_POST) {
                         break;
                     }
                     echo '<div><a href="page_produit.php?id='.$datas[$increment]['id'].'"><img src="../images/placeholder-image.jpg" alt="placeholder">';
-                    echo $datas[$increment]['title'].' - '.$connection->getFilterTitlesByID('categories',$datas[$increment]['categories'])['title'].' - '.$connection->getFilterTitlesByID('states',$datas[$increment]['states'])['title'].' - '.$connection->getFilterTitlesByID('sizes',$datas[$increment]['sizes'])['title'].' - '.$datas[$increment]['publication'].'</a></div>';
+                    echo $datas[$increment]['title'].' / '.$connection->getFilterTitlesByID('categories',$datas[$increment]['categories'])['title'].' / '.$connection->getFilterTitlesByID('states',$datas[$increment]['states'])['title'].' / '.$connection->getFilterTitlesByID('sizes',$datas[$increment]['sizes'])['title'].' / '.$datas[$increment]['publication'].'</a></div>';
                 }
                 ?>
             </div>

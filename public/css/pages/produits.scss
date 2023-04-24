@@ -67,12 +67,20 @@ body, html{
   width: 100%;
   grid-template-columns: repeat(auto-fit, minmax(280px,1fr));
   place-items: center;
+  a{
+    text-decoration: none;
+    color: black;
+  }
   img{
-    width: 280px;
+    width: 100%;
+    border-radius: 25px;
   }
   div{
     display: flex;
-    flex-direction: column;
+    justify-content: center;
     width: 280px;
+    background-color: #E7F1FA;
+    padding: 20px;
+    border-radius: 25px;
   }
 }
