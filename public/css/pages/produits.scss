@@ -94,8 +94,8 @@ body, html{
   padding: 20px 0 20px 0;
   input{
     background-color:#E7F1FA;
-    border-radius:2px;
-    border:1px solid #18ab29;
+    border-radius:25px;
+    border:1px solid #E7F1FA;
     display:inline-block;
     cursor:pointer;
     color: black;
@@ -104,4 +104,10 @@ body, html{
     text-decoration:none;
     text-shadow:0px 1px 0px #2f6627;
   }
+}
+
+.page_buttons_container{
+  width: 30%;
+  display: flex;
+  justify-content: space-evenly;
 }
