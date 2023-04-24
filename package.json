@@ -1,0 +1,24 @@
+{
+  "name": "bap_plessis-robinson",
+  "version": "1.0.0",
+  "description": "## Branch Setup Pour setup votre branch, suivez ce qui suit : ``` git pull git switch dev git branch TonPrénom-dev git switch TonPrénom-dev ```",
+  "main": "index.js",
+  "scripts": {
+    "sass": "sass --watch public/css/output.scss:public/css/style.css"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jstnate/BAP-Plessis-Robinson.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jstnate/BAP-Plessis-Robinson/issues"
+  },
+  "homepage": "https://github.com/jstnate/BAP-Plessis-Robinson#readme",
+  "dependencies": {
+    "sass": "^1.60.0",
+    "sass-loader": "^13.2.2"
+  }
+}

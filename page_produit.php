@@ -31,11 +31,7 @@ $size = $connection->getSize($product['sizes']);
 <body>
     
 
-<header>
-    <div class="nav">
-        <p>Logo</p>
-    </div>
-</header>
+<?php include 'public/layouts/_header.php'; ?>
 
 
 
@@ -57,13 +53,13 @@ $size = $connection->getSize($product['sizes']);
 
       <div class="swiper-slide">            
         <div class="image__wrapper">       
-            <img src="<?= $product['back_pic'] ?>" alt="back pic">  
+            <img src="images/uploads/products/<?= $product['back_pic'] ?>" alt="back pic">  
         </div> 
       </div>
 
       <div class="swiper-slide">            
         <div class="image__wrapper">       
-            <img src="<?= $product['side_pic'] ?>" alt="side pic">    
+            <img src="images/uploads/products/<?= $product['side_pic'] ?>" alt="side pic">    
         </div> 
       </div>
 
@@ -73,8 +69,8 @@ $size = $connection->getSize($product['sizes']);
     <div class="swiper-pagination"></div>
   
     <!-- If we need navigation buttons -->
-    <button type="button" class="swiper-button-prev"class="swiper-button-next" ><img src="images/prev.png" alt="swiper-button-prev"></button>
-    <button type="button" class="swiper-button-next" ><img src="images/next .png" alt="swiper-button-next"></button>
+    <button type="button" class="swiper-button-prev"class="swiper-button-next" ></button>
+    <button type="button" class="swiper-button-next" ></button>
 
 
       <!-- If we need scrollbar -->
@@ -102,8 +98,10 @@ $size = $connection->getSize($product['sizes']);
 </div>
 
 
+<?php include 'public/layouts/_footer.php'; ?>
 
-<footer class="footer">
+
+<!-- <footer class="footer">
     <div class="container">
         <div class="row">
          <div class="footer-col">
@@ -174,11 +172,10 @@ $size = $connection->getSize($product['sizes']);
 
      </div>
  </div>
-</footer>
+</footer> -->
 
 
-<script> src="../js/product.js"></script>
-
+<script src="public/js/product.js" defer></script>
 
 </body>
 </html>

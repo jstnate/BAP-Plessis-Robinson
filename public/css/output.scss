@@ -1,3 +1,7 @@
-
+@use 'base/imports';
 @use 'base/reset';
-@use 'pages/product'
+@use 'layouts/header';
+@use 'pages/participation';
+@use 'pages/index';
+@use 'layouts/footer';
+@use 'pages/produits';
