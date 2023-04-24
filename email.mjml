@@ -1,8 +1,17 @@
 <mjml>
 
   <mj-head>
-    <mj-font name="Inter" href="public/Inter/Inter-VariableFont_slnt,wght.ttf" />
-  </mj-head>
+    <mj-title>Merci d'avoir donné !</mj-title>
+    <mj-style>
+
+      .CTA {
+      }
+      .CTA:hover {
+        background-color: darkorange !important;
+        cursor: pointer !important;
+      }
+    </mj-style>
+    </mj-head>
 
   <mj-body background-color="#F4F4F4" color="#55575d" font-family="Arial, sans-serif">
 
@@ -14,13 +23,13 @@
         </mj-text>
       </mj-column>
     </mj-section>
-    <mj-section background-color="#000000" background-repeat="no-repeat" text-align="center" vertical-align="top" padding="0 0 0 0">
+    <mj-section background-url="images/plessis-email.png" background-repeat="no-repeat" text-align="center" vertical-align="top" padding="50px 5px">
       <mj-column>
-        <mj-text align="left" color="#55575d" font-family="Arial, sans-serif" font-size="13px" line-height="22px" padding-bottom="5px" padding-top="25px" padding="10px 25px">
-          <p style="line-height: 60px; text-align: left; margin: 10px 0;font-size:30px;color:#fcfcfc;font-family:'Inter'"><b>Merci !</b></p>
+        <mj-text align="left" color="#55575d" font-family="Arial, sans-serif"  font-size="13px" line-height="22px" padding-bottom="5px" padding-top="25px" padding="10px 25px">
+          <p style="line-height: 60px; text-align: left; margin: 10px 0;font-size:30px;color:#fcfcfc;"><b>Merci !</b></p>
         </mj-text>
         <mj-text align="left" color="#55575d" font-family="Arial, sans-serif" font-size="13px" line-height="22px" padding-bottom="20px" padding-top="0px" padding="10px 25px">
-          <p style=" text-align: left; margin: 10px 0;color:#f5f5f5;font-size:14px;font-family:'Times New Roman',Helvetica,Arial,sans-serif"> La ville du Plessis-Robinson vous remercie d’avoir participer à la campgne de dons en partenariat avec La Maison des Part’Âges.</p>
+          <p style=" text-align: left; margin: 10px 0;color:#f5f5f5;font-size:14px;"> La ville du Plessis-Robinson vous remercie d’avoir participer à la campgne de dons en partenariat avec La Maison des Part’Âges.</p>
         </mj-text>
       </mj-column>
     </mj-section>
@@ -32,25 +41,26 @@
 
               
         <mj-text align="left" color="#000" font-family="Arial, sans-serif" font-size="13px" line-height="22px" padding-bottom="5px" padding-top="25px" padding="10px 25px">
-          <p style="line-height: 60px; text-align: left; margin: 10px 0;font-size:30px;color:#000;font-family:'Times New Roman',Helvetica,Arial,sans-serif"><b>Bonjour Adam, </b></p>
+          <p style="line-height: 60px; text-align: left; margin: 10px 0;font-size:30px;color:#000;"><b>Bonjour {{ name }}, </b></p>
         </mj-text>
         <mj-text align="left" color="#000" font-family="Arial, sans-serif" font-size="13px" line-height="22px" padding-bottom="20px" padding-top="0px" padding="10px 25px">
-          <p style="line-height: 25px;text-align: left; margin: 10px 0;color:#000;font-size:14px;font-family:'Times New Roman',Helvetica,Arial,sans-serif"> La ville du Plessis-Robinson vous remercie d’avoir donné pour la campagne de don.<br>
+          <p style="line-height: 25px;text-align: left; margin: 10px 0;color:#000;font-size:14px;"> La ville du Plessis-Robinson vous remercie d’avoir donné pour la campagne de don.<br>
       Désormais, les autres habitants peuvent voir l’objet que vous avez donné sur notre site. <br>
       Si votre objet rencontre le succès qu’il mérite, les utilisateurs interéssés vous contacteront via les informations de contacts que vous avez renseigner lorsque vous avez effectué votre don.</p>
         </mj-text>
 
-        <mj-button background-color="#165FA5" border-radius="10px" font-family="Times New Roman, Helvetica, Arial, sans-serif" font-size="18px" font-weight="normal" inner-padding="15px 88px" padding-bottom="30px" padding="10px 25px"><span style="color:#fff">Voir la page de don</span></mj-button>
-
+        <mj-button font-size="16px" background-color="transparent" padding="50px 0"  border-radius="5px" inner-padding="15px">
+            <a href="" class="CTA" style="background-color: #165FA5; padding: 20px 100px; border-radius: 8px; color: white; text-decoration: none; font-size: 16px; font-weight:bold;">Faire un autre don</a>
+        </mj-button>
 
                 <mj-text align="left" color="#000" font-family="Arial, sans-serif" font-size="13px" line-height="22px" padding-bottom="20px" padding-top="0px" padding="10px 25px">
-          <p style="line-height: 25px;text-align: left; margin: 10px 0;color:#000;font-size:14px;font-family:'Times New Roman',Helvetica,Arial,sans-serif"> La ville du Plessis-Robinson vous remercie d’avoir donné pour la campagne de don.<br>
+          <p style="line-height: 25px;text-align: left; margin: 10px 0;color:#000;font-size:14px;"> La ville du Plessis-Robinson vous remercie d’avoir donné pour la campagne de don.<br>
       Désormais, les autres habitants peuvent voir l’objet que vous avez donné sur notre site. <br>
       Si votre objet rencontre le succès qu’il mérite, les utilisateurs interéssés vous contacteront via les informations de contacts que vous avez renseigner lorsque vous avez effectué votre don.</p>
         </mj-text>
 
                 <mj-text align="left" color="#000" font-family="Arial, sans-serif" font-size="13px" line-height="22px" padding-bottom="20px" padding-top="0px" padding="10px 25px">
-          <p style="line-height: 25px;text-align: left; margin: 10px 0;color:#000;font-size:14px;font-family:'Times New Roman',Helvetica,Arial,sans-serif"> Cordialement, <br>
+          <p style="line-height: 25px;text-align: left; margin: 10px 0;color:#000;font-size:14px;"> Cordialement, <br>
             La ville du Plessis-Robinson et La Maison des Part’Âges.
             </p>
         </mj-text>
