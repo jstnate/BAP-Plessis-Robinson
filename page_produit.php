@@ -3,11 +3,11 @@ require_once 'class/connection.php';
 $connection = new Connection();
 $id = $_GET['id'];
 $product = $connection->getProductById($id);
-$category = $connection->getCategory($product['id']);
-$color = $connection->getColor($product['id']);
-$matter = $connection->getMatter($product['id']);
-$state = $connection->getState($product['id']);
-$size = $connection->getSize($product['id']);
+$category = $connection->getCategory($product['categories']);
+$color = $connection->getColor($product['colors']);
+$matter = $connection->getMatter($product['matters']);
+$state = $connection->getState($product['states']);
+$size = $connection->getSize($product['sizes']);
 
 ?>
 

@@ -131,11 +131,12 @@ if ($_POST) {
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" href="public/css/style.css">
+    <!-- <link rel="stylesheet" href="public/css/style.css"> -->
     <title>Document</title>
 </head>
 <body>
 
+<!-- <?php include 'public/layouts/_header.php'; ?> -->
 
 <div>
     <div class="main-content">
@@ -188,8 +189,8 @@ if ($_POST) {
                     if($increment >= count($datas)){
                         break;
                     }
-                    echo '<div><img src="../images/placeholder-image.jpg" alt="placeholder">';
-                    echo $datas[$increment]['title'].' - '.$connection->getFilterTitlesByID('categories',$datas[$increment]['categories'])['title'].' - '.$connection->getFilterTitlesByID('states',$datas[$increment]['states'])['title'].' - '.$connection->getFilterTitlesByID('sizes',$datas[$increment]['sizes'])['title'].' - '.$datas[$increment]['publication'].'</div>';
+                    echo '<div><a href="page_produit.php?id='.$datas[$increment]['id'].'"><img src="../images/placeholder-image.jpg" alt="placeholder">';
+                    echo $datas[$increment]['title'].' - '.$connection->getFilterTitlesByID('categories',$datas[$increment]['categories'])['title'].' - '.$connection->getFilterTitlesByID('states',$datas[$increment]['states'])['title'].' - '.$connection->getFilterTitlesByID('sizes',$datas[$increment]['sizes'])['title'].' - '.$datas[$increment]['publication'].'</a></div>';
                 }
                 ?>
             </div>
@@ -204,6 +205,7 @@ if ($_POST) {
     </div>
 </div>
 
+<!-- <?php include 'public/layouts/_footer.php'; ?> -->
 
 </body>
 </html>
