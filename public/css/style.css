@@ -85,6 +85,7 @@
   }
 }
 .participation {
+  overflow-x: hidden;
   min-height: 100vh;
   min-width: 100vw;
 }
@@ -427,7 +428,7 @@
 
 .home {
   height: 60vh;
-  background: rgba(63, 57, 57, 0.7) url(../../../images/plessis.png) no-repeat center center/cover;
+  background: rgba(63, 57, 57, 0.7) url("../../images/plessis.png") no-repeat center center/cover;
   background-blend-mode: darken;
   background-size: cover;
   display: flex;
