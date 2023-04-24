@@ -194,11 +194,13 @@ if ($_POST) {
                 }
                 ?>
             </div>
-            <div>
-                <?php
-                if($displayPrevButton == 1) echo '<input type="submit" name="prev" value="prev">';
-                if($displayNextButton == 1) echo '<input type="submit" name="next" value="next">';
-                ?>
+            <div class="page_buttons">
+                <div  class="page_buttons_container">
+                    <?php
+                    if($displayPrevButton == 1) echo '<input type="submit" name="prev" value="<">';
+                    if($displayNextButton == 1) echo '<input type="submit" name="next" value=">">';
+                    ?>
+                </div>
                 </form>
             </div>
         </div>
