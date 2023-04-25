@@ -1,23 +1,27 @@
 <?php
+    // Include necessary files and libraries
     require_once 'class/connection.php';
     require_once 'class/product.php';
+    require_once __DIR__ . '/vendor/autoload.php';
+    use Mjml\Parser;
 
+    // Create a new Connection object
     $connection = new Connection();
 
-//    ==================== GET =================
+    // Retrieve data from the database using Connection object's methods
     $categories = $connection->getCategories();
     $colors = $connection->getColors();
     $matters = $connection->getMatters();
     $states = $connection->getStates();
     $sizes = $connection->getSizes();
-//    ==================== END GET =================
 
-// ==================== INSERT =================
+    // Handle form submission and insert product into the database
     if ($_POST) :
 
+        // Generate a unique identifier for the product
         $sku = uniqid();
-        
 
+        // Create a new Product object with data submitted through the form
         $product = new Product(
             $_POST['lastname'],
             $_POST['firstname'],
@@ -36,18 +40,50 @@
             $_POST['size']
         );
 
+        // Upload the product images to the server
         foreach (['front_pic', 'back_pic', 'side_pic'] as $key) {
             $img_name = '' . $sku .'-' . $_FILES[$key]['name'];
             $tmp_img_name = $_FILES[$key]['tmp_name'];
             $temporary = 'images/uploads/products/';
             move_uploaded_file($tmp_img_name,$temporary.$img_name);
         }
-        
+
+        // Insert the new product into the database using Connection object's method
         $insert = $connection->insertProduct($product);
-        
+
     endif;
-// ==================== END INSERT =================
+
+    // Send a thank-you email to the user who submitted the form
+    if($_SERVER["REQUEST_METHOD"] == "POST"){
+        $firstname = $_POST['firstname'];
+        $email = $_POST['email'];
+
+        // Load the content of the email template
+        $template = file_get_contents("email_template.html");
+
+        // Replace placeholders in the email template with actual values
+        $template = str_replace("{{ name }}", $firstname, $template);
+
+        // Set the email sender address (you can use your own email address)
+        $from = "noreply@plessis.com";
+
+        // Set the email subject
+        $subject = "Thank you for your submission!";
+
+        // To send an HTML email, set the content-type and character set
+        $headers = "MIME-Version: 1.0" . "\r\n";
+        $headers .= "Content-type:text/html;charset=UTF-8" . "\r\n";
+        $headers .= "From: $from" . "\r\n";
+
+        // Send the email with the HTML template
+        if (mail($email, $subject, $template, $headers)) {
+            echo "Email sent successfully.";
+        } else {
+            echo "Failed to send email.";
+        }
+    }
 ?>
+
 
 <!DOCTYPE html>
 <html lang="en">
