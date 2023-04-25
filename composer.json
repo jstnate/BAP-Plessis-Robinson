@@ -1,0 +1,22 @@
+{
+    "name": "nathanlefetey/bap_plessis-robinson",
+    "autoload": {
+        "psr-4": {
+            "Nathanlefetey\\BapPlessisRobinson\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Nathan Lefetey",
+            "email": "lefetey.nathan@gmail.com"
+        }
+    ],
+    
+    "minimum-stability": "dev",
+    "prefer-stable": true,
+    "require": {
+        "php": ">=7.2",
+        "mjml/mjml": "^4.9"
+
+    }
+}

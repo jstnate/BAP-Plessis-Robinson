@@ -6,7 +6,7 @@ Class Connection
     private PDO $pdo;
     public function __construct()
     {
-        $this->pdo = new PDO('mysql:dbname=bap2;host=127.0.0.1', 'root', '');
+        $this->pdo = new PDO('mysql:dbname=db_plessis-robinson;host=127.0.0.1', 'root', 'root');
     }
 
 //    ============== GET =================
@@ -179,7 +179,7 @@ Class Connection
     }
 
     public function getAllFilters(){
-        $query = 'SHOW COLUMNS FROM bap2.products';
+        $query = 'SHOW COLUMNS FROM products';
         $tableData = $this->pdo->prepare($query);
         $tableData->execute();
         $tableData = $tableData->fetchAll(PDO::FETCH_COLUMN, 0);
