@@ -69,7 +69,7 @@ $size = $connection->getSize($product['sizes']);
     <div class="swiper-pagination"></div>
   
     <!-- If we need navigation buttons -->
-    <button type="button" class="swiper-button-prev"class="swiper-button-next" ></button>
+    <button type="button" class="swiper-button-prev" ></button>
     <button type="button" class="swiper-button-next" ></button>
 
 
