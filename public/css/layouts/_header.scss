@@ -1,86 +1,86 @@
 .main_header {
-    position: relative;
-    background: #FFF;
-    height: 94px;
-    top: 0;
-    left: 0;
-    width: 100%;
-    padding: 40px 100px;
-    z-index: 1000;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    transition: 0.5s;
-    z-index: 3000;
-    box-shadow: 0 8px 16px -8px rgba(0, 0, 0, .1);
+  position: relative;
+  background: #E7F1FA;
+  height: 94px;
+  top: 0;
+  left: 0;
+  width: 100%;
+  padding: 40px 100px;
+  z-index: 1000;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: 0.5s;
+  z-index: 3000;
+  box-shadow: 0 8px 16px -8px rgba(0, 0, 0, .1);
 
-    .logo{ 
-      img{  
-        width: 150px;
-        }
+  .logo{ 
+    img{  
+      width: 150px;
       }
-      // Reponsive pour faire disparaître le logo
+    }
+    // Reponsive pour faire disparaître le logo
 
-      @media screen and (max-width:570px) {
-        .logo{
-          display: none;
-        }
-        ul{
-          width: auto;
-          margin: 0 auto;
-        }
+    @media screen and (max-width:570px) {
+      .logo{
+        display: none;
       }
-      // 
       ul{
-        position: relative;
-        display: flex;
-        li {
-            position: relative;
-            list-style: none;
-            margin-right: 50px;
-            a{
-                font-family: 'Open Sans';
-                font-style: normal;
-                font-weight: 700;
-                font-size: 24px;
-                line-height: 33px;
-                /* identical to box height */
-
-
-                color: #000000;
-
-                text-decoration: none;
-                &:hover{
-                    color:darkorange;
-                  }
-              }
-          }
+        width: auto;
+        margin: 0 auto;
       }
-  }
+    }
+    // 
+    ul{
+      position: relative;
+      display: flex;
+      li {
+          position: relative;
+          list-style: none;
+          margin-right: 50px;
+          a{
+              font-family: 'Open Sans';
+              font-style: normal;
+              font-weight: 700;
+              font-size: 24px;
+              line-height: 33px;
+              /* identical to box height */
+
+
+              color: #000000;
+
+              text-decoration: none;
+              &:hover{
+                  color:darkorange;
+                }
+            }
+        }
+    }
+}
 
 .main_header.sticky{
-    position: fixed;
+  position: fixed;
 }  
 
-  // repsonsive 
+// repsonsive 
 @media screen and (max-width:570px){
-    header {
-      margin: 30px auto;
-      padding: 0;
-      ul {
-        li{
-          margin-right: 15px;
-          a{
-            font-size: 1.2rem;
-            font-weight: 400;
-          }
+  header {
+    margin: 30px auto;
+    padding: 0;
+    ul {
+      li{
+        margin-right: 15px;
+        a{
+          font-size: 1.2rem;
+          font-weight: 400;
         }
       }
     }
+  }
 }   
 
 @media screen and (max-width:770px){
-    .logo{
-      margin-right: 40px;
-    }
+  .logo{
+    margin-right: 40px;
+  }
 }

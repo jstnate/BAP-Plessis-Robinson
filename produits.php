@@ -189,16 +189,22 @@ if ($_POST) {
                     if($increment >= count($datas)){
                         break;
                     }
-                    echo '<div><a href="page_produit.php?id='.$datas[$increment]['id'].'"><img src="../images/placeholder-image.jpg" alt="placeholder">';
-                    echo $datas[$increment]['title'].' - '.$connection->getFilterTitlesByID('categories',$datas[$increment]['categories'])['title'].' - '.$connection->getFilterTitlesByID('states',$datas[$increment]['states'])['title'].' - '.$connection->getFilterTitlesByID('sizes',$datas[$increment]['sizes'])['title'].' - '.$datas[$increment]['publication'].'</a></div>';
+                    if ($datas[$increment]['front_pic'] == null){
+                        echo '<div><a href="page_produit.php?id='.$datas[$increment]['id'].'"><img src="images/placeholder-image.jpg" alt="placeholder">';
+                    }else{
+                        echo '<div><a href="page_produit.php?id='.$datas[$increment]['id'].'"><img src="images/uploads/products/'.$datas[$increment]['front_pic'].'" alt="placeholder">';
+                    }
+                    echo $datas[$increment]['title'].' / '.$connection->getFilterTitlesByID('categories',$datas[$increment]['categories'])['title'].' / '.$connection->getFilterTitlesByID('states',$datas[$increment]['states'])['title'].' / '.$connection->getFilterTitlesByID('sizes',$datas[$increment]['sizes'])['title'].' / '.$datas[$increment]['publication'].'</a></div>';
                 }
                 ?>
             </div>
-            <div>
-                <?php
-                if($displayPrevButton == 1) echo '<input type="submit" name="prev" value="prev">';
-                if($displayNextButton == 1) echo '<input type="submit" name="next" value="next">';
-                ?>
+            <div class="page_buttons">
+                <div  class="page_buttons_container">
+                    <?php
+                    if($displayPrevButton == 1) echo '<input type="submit" name="prev" value="<">';
+                    if($displayNextButton == 1) echo '<input type="submit" name="next" value=">">';
+                    ?>
+                </div>
                 </form>
             </div>
         </div>

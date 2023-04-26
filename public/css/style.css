@@ -13,7 +13,7 @@
 
 .main_header {
   position: relative;
-  background: #FFF;
+  background: #E7F1FA;
   height: 94px;
   top: 0;
   left: 0;
@@ -1005,13 +1005,48 @@ body, html {
   grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
   place-items: center;
 }
+.products-content a {
+  text-decoration: none;
+  color: black;
+}
 .products-content img {
-  width: 280px;
+  width: 240px;
+  height: 260px;
+  border-radius: 25px;
+  object-fit: cover;
 }
 .products-content div {
   display: flex;
-  flex-direction: column;
+  justify-content: center;
   width: 280px;
+  background-color: #E7F1FA;
+  padding: 20px;
+  border-radius: 25px;
+}
+
+.page_buttons {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  padding: 20px 0 20px 0;
+}
+.page_buttons input {
+  background-color: #E7F1FA;
+  border-radius: 25px;
+  border: 1px solid #E7F1FA;
+  display: inline-block;
+  cursor: pointer;
+  color: black;
+  font-size: 17px;
+  padding: 16px 31px;
+  text-decoration: none;
+  text-shadow: 0px 1px 0px #2f6627;
+}
+
+.page_buttons_container {
+  width: 30%;
+  display: flex;
+  justify-content: space-evenly;
 }
 
 /*# sourceMappingURL=style.css.map */
