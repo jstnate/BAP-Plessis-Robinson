@@ -30,29 +30,28 @@
 .main_header .logo img {
   width: 150px;
 }
-@media screen and (max-width: 570px) {
+@media screen and (max-width: 944px) {
   .main_header .logo {
     display: none;
   }
   .main_header ul {
-    width: auto;
     margin: 0 auto;
   }
 }
 .main_header ul {
   position: relative;
   display: flex;
+  gap: 50px;
 }
 .main_header ul li {
   position: relative;
   list-style: none;
-  margin-right: 50px;
 }
 .main_header ul li a {
   font-family: "Open Sans";
   font-style: normal;
   font-weight: 700;
-  font-size: 24px;
+  font-size: 1.25rem;
   line-height: 33px;
   /* identical to box height */
   color: #000000;
@@ -71,17 +70,9 @@
     margin: 30px auto;
     padding: 0;
   }
-  header ul li {
-    margin-right: 15px;
-  }
   header ul li a {
-    font-size: 1.2rem;
-    font-weight: 400;
-  }
-}
-@media screen and (max-width: 770px) {
-  .logo {
-    margin-right: 40px;
+    font-size: 0.8rem;
+    font-weight: 300;
   }
 }
 .participation {
@@ -548,7 +539,11 @@
 
 .home {
   height: 60vh;
+<<<<<<< HEAD
   background: rgba(63, 57, 57, 0.7) url("../../images/plessis.png") no-repeat center center/cover;
+=======
+  background: rgba(63, 57, 57, 0.7) url(../../../../BAP-Plessis-Robinson/images/plessis.png) no-repeat center center/cover;
+>>>>>>> adam-dev
   background-blend-mode: darken;
   background-size: cover;
   display: flex;
@@ -562,16 +557,17 @@
   font-family: "Trirong";
   font-style: normal;
   font-weight: 900;
-  font-size: 64px;
+  font-size: 3rem;
   line-height: 111px;
   color: #FFFFFF;
   text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 }
 .home h2 {
+  margin: 0 12%;
   font-family: "Open Sans";
   font-style: normal;
   font-weight: 700;
-  font-size: 40px;
+  font-size: 2rem;
   line-height: 54px;
   text-align: center;
   color: #FFFFFF;
@@ -579,7 +575,7 @@
 }
 
 .btn {
-  margin-top: -50px;
+  margin-top: -40px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -591,11 +587,11 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 15px 40px;
+  padding: 10px 27px;
   font-family: "Inter";
   font-style: normal;
   font-weight: 700;
-  font-size: 40px;
+  font-size: 1.5rem;
   line-height: 174.52%;
   gap: 30px;
   /* identical to box height, or 70px */
@@ -622,6 +618,7 @@
 
 .main {
   margin: 90px 45px;
+  border: red solid 1px;
 }
 .main .mainBloc1, .main .mainBloc2, .main .mainBloc3 {
   margin: 80px 0;
@@ -648,7 +645,7 @@
   font-family: "Inter";
   font-style: normal;
   font-weight: 700;
-  font-size: 40px;
+  font-size: 1.5rem;
   line-height: 48px;
   margin-bottom: 25px;
   color: #000000;
@@ -657,9 +654,25 @@
   font-family: "Open Sans";
   font-style: normal;
   font-weight: 400;
-  font-size: 20px;
+  font-size: 1rem;
   line-height: 27px;
   color: #000000;
+}
+@media screen and (max-width: 1060px) {
+  .main .hide img {
+    display: none;
+  }
+  .main .main {
+    margin: 90px 30px;
+  }
+  .main .main .mainBloc1 .mainTxt, .main .main .mainBloc2 .mainTxt, .main .main .mainBloc3 .mainTxt {
+    width: 100%;
+  }
+}
+@media screen and (max-width: 590px) {
+  .main .btn {
+    flex-direction: column;
+  }
 }
 
 footer {
