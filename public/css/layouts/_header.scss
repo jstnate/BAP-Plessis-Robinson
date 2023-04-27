@@ -58,9 +58,11 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            &.header-text {
+            @media screen and (max-width: 600px) {
+              &.header-text {
               display: none;
               width: 0;
+            }
             }
             
             a{

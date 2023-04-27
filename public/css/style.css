@@ -68,9 +68,11 @@
   align-items: center;
   justify-content: center;
 }
-.main_header ul li.header-text {
-  display: none;
-  width: 0;
+@media screen and (max-width: 600px) {
+  .main_header ul li.header-text {
+    display: none;
+    width: 0;
+  }
 }
 .main_header ul li a {
   font-family: "Open Sans";
@@ -584,7 +586,6 @@
 }
 @media screen and (max-width: 500px) {
   .home {
-    border: 2px solid red;
     height: 90vh;
   }
 }
