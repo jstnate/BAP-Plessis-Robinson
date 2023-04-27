@@ -70,12 +70,9 @@
     margin: 30px auto;
     padding: 0;
   }
-  header ul li {
-    margin-right: 15px;
-  }
   header ul li a {
-    font-size: 1.2rem;
-    font-weight: 400;
+    font-size: 0.8rem;
+    font-weight: 300;
   }
 }
 .participation {
@@ -496,6 +493,7 @@
 
 .main {
   margin: 90px 45px;
+  border: red solid 1px;
 }
 .main .mainBloc1, .main .mainBloc2, .main .mainBloc3 {
   margin: 80px 0;
@@ -540,7 +538,15 @@
     display: none;
   }
   .main .main {
-    margin: 0;
+    margin: 90px 30px;
+  }
+  .main .main .mainBloc1 .mainTxt, .main .main .mainBloc2 .mainTxt, .main .main .mainBloc3 .mainTxt {
+    width: 100%;
+  }
+}
+@media screen and (max-width: 590px) {
+  .main .btn {
+    flex-direction: column;
   }
 }
 

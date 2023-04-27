@@ -88,6 +88,7 @@
 
 .main{
     margin: 90px 45px;
+    border: red solid 1px;
 
     .mainBloc1, .mainBloc2, .mainBloc3{
         margin: 80px 0;
@@ -95,6 +96,7 @@
         align-items: center;
         justify-content: space-around;
         gap: 50px;
+        
 
 
         &:nth-child(1){
@@ -139,6 +141,10 @@
             }
         }
     }
+
+
+    // Responsive part 
+
         @media screen and (max-width:1060px) {
             .hide{
                 img{
@@ -146,7 +152,18 @@
                 }       
             }
             .main{
-                margin: 0;
+                margin: 90px 30px;
+                .mainBloc1, .mainBloc2, .mainBloc3{
+                    .mainTxt{
+                        width: 100%;
+                    }
+                }
+            }
+        }
+
+        @media screen and (max-width:590px) {
+            .btn{
+                flex-direction: column;
             }
         }
 }
