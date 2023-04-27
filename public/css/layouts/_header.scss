@@ -14,6 +14,11 @@
     z-index: 3000;
     box-shadow: 0 8px 16px -8px rgba(0, 0, 0, .1);
 
+    @media screen and (max-width: 600px) {
+      margin: 0;
+    }
+      
+
     .logo{ 
       img{  
         width: 150px;
@@ -43,9 +48,20 @@
         position: relative;
         display: flex;
         gap: 50px;
+
+        @media screen and (max-width:600px) {
+          gap: 100px;
+        }
         li {
             position: relative;
             list-style: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            &.header-text {
+              display: none;
+              width: 0;
+            }
             
             a{
                 font-family: 'Open Sans';
@@ -61,6 +77,15 @@
                 text-decoration: none;
                 &:hover{
                     color:darkorange;
+                  }
+
+                  i {
+                    display: none;
+                    font-size: 1.5rem;
+
+                    @media screen and (max-width: 600px) {
+                      display: block;
+                    }
                   }
               }
           }

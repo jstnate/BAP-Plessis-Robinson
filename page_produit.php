@@ -24,6 +24,7 @@ $size = $connection->getSize($product['sizes']);
   />
   
   <script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>
+  <script src="https://kit.fontawesome.com/b050931f68.js" crossorigin="anonymous"></script>
 
     <link rel="stylesheet" href="public/css/style.css">
     <title>Page produits</title>
