@@ -21,12 +21,12 @@
       }
       // Reponsive pour faire disparaître le logo
 
-      @media screen and (max-width:570px) {
+      @media screen and (max-width:944px) {
+
         .logo{
           display: none;
         }
         ul{
-          width: auto;
           margin: 0 auto;
         }
       }
@@ -34,15 +34,16 @@
       ul{
         position: relative;
         display: flex;
+        gap: 50px;
         li {
             position: relative;
             list-style: none;
-            margin-right: 50px;
+            
             a{
                 font-family: 'Open Sans';
                 font-style: normal;
                 font-weight: 700;
-                font-size: 24px;
+                font-size: 1.25rem;
                 line-height: 33px;
                 /* identical to box height */
 
@@ -78,9 +79,3 @@
       }
     }
 }   
-
-@media screen and (max-width:770px){
-    .logo{
-      margin-right: 40px;
-    }
-}

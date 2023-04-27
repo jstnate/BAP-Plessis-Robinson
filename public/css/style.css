@@ -30,29 +30,28 @@
 .main_header .logo img {
   width: 150px;
 }
-@media screen and (max-width: 570px) {
+@media screen and (max-width: 944px) {
   .main_header .logo {
     display: none;
   }
   .main_header ul {
-    width: auto;
     margin: 0 auto;
   }
 }
 .main_header ul {
   position: relative;
   display: flex;
+  gap: 50px;
 }
 .main_header ul li {
   position: relative;
   list-style: none;
-  margin-right: 50px;
 }
 .main_header ul li a {
   font-family: "Open Sans";
   font-style: normal;
   font-weight: 700;
-  font-size: 24px;
+  font-size: 1.25rem;
   line-height: 33px;
   /* identical to box height */
   color: #000000;
@@ -77,11 +76,6 @@
   header ul li a {
     font-size: 1.2rem;
     font-weight: 400;
-  }
-}
-@media screen and (max-width: 770px) {
-  .logo {
-    margin-right: 40px;
   }
 }
 .participation {
@@ -427,7 +421,7 @@
 
 .home {
   height: 60vh;
-  background: rgba(63, 57, 57, 0.7) url(../../../images/plessis.png) no-repeat center center/cover;
+  background: rgba(63, 57, 57, 0.7) url(../../../../BAP-Plessis-Robinson/images/plessis.png) no-repeat center center/cover;
   background-blend-mode: darken;
   background-size: cover;
   display: flex;
@@ -441,16 +435,17 @@
   font-family: "Trirong";
   font-style: normal;
   font-weight: 900;
-  font-size: 64px;
+  font-size: 3rem;
   line-height: 111px;
   color: #FFFFFF;
   text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 }
 .home h2 {
+  margin: 0 12%;
   font-family: "Open Sans";
   font-style: normal;
   font-weight: 700;
-  font-size: 40px;
+  font-size: 2rem;
   line-height: 54px;
   text-align: center;
   color: #FFFFFF;
@@ -458,7 +453,7 @@
 }
 
 .btn {
-  margin-top: -50px;
+  margin-top: -40px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -470,11 +465,11 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 15px 40px;
+  padding: 10px 27px;
   font-family: "Inter";
   font-style: normal;
   font-weight: 700;
-  font-size: 40px;
+  font-size: 1.5rem;
   line-height: 174.52%;
   gap: 30px;
   /* identical to box height, or 70px */
@@ -527,7 +522,7 @@
   font-family: "Inter";
   font-style: normal;
   font-weight: 700;
-  font-size: 40px;
+  font-size: 1.5rem;
   line-height: 48px;
   margin-bottom: 25px;
   color: #000000;
@@ -536,9 +531,17 @@
   font-family: "Open Sans";
   font-style: normal;
   font-weight: 400;
-  font-size: 20px;
+  font-size: 1rem;
   line-height: 27px;
   color: #000000;
+}
+@media screen and (max-width: 1060px) {
+  .main .hide img {
+    display: none;
+  }
+  .main .main {
+    margin: 0;
+  }
 }
 
 footer {

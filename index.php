@@ -23,7 +23,7 @@
     </section>
 
     <section class="main">
-        <div class="mainBloc1">
+        <div class="mainBloc1 hide">
             <img src="images/img1.png" alt="photo dessin animation">
             <div class="mainTxt">
                 <h3>Le projet de la ville
@@ -37,7 +37,7 @@
             </div>
         </div>
 
-        <div class="mainBloc2">
+        <div class="mainBloc2 hide">
             <div class="mainTxt">
                 <h3>Le projet de la ville
                     de Le Plessis-Robinsson</h3>
@@ -51,7 +51,7 @@
             <img src="images/img2.png" alt="photo dessin animation">
         </div>
 
-        <div class="mainBloc3">
+        <div class="mainBloc3 hide">
             <img src="images/img3.png" alt="photo dessin animation">
             <div class="mainTxt">
                 <h3>Le projet de la ville
