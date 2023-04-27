@@ -13,7 +13,7 @@
 
 .main_header {
   position: relative;
-  background: #FFF;
+  background: #E7F1FA;
   height: 94px;
   top: 0;
   left: 0;
@@ -36,6 +36,14 @@
   }
   .main_header ul {
     margin: 0 auto;
+  }
+}
+@media screen and (max-width: 700px) {
+  .main_header {
+    padding: 40px 50px;
+  }
+  .main_header ul li a {
+    font-size: 16px;
   }
 }
 .main_header ul {
@@ -539,11 +547,7 @@
 
 .home {
   height: 60vh;
-<<<<<<< HEAD
   background: rgba(63, 57, 57, 0.7) url("../../images/plessis.png") no-repeat center center/cover;
-=======
-  background: rgba(63, 57, 57, 0.7) url(../../../../BAP-Plessis-Robinson/images/plessis.png) no-repeat center center/cover;
->>>>>>> adam-dev
   background-blend-mode: darken;
   background-size: cover;
   display: flex;
@@ -618,7 +622,6 @@
 
 .main {
   margin: 90px 45px;
-  border: red solid 1px;
 }
 .main .mainBloc1, .main .mainBloc2, .main .mainBloc3 {
   margin: 80px 0;
